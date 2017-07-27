@@ -128,7 +128,7 @@ body {
   -webkit-text-size-adjust: 100%;
 }
 .outer {
-  max-width: 1220px;
+  max-width: 1120px;
   margin: 0 auto;
   padding: 0 20px;
 }
@@ -143,8 +143,8 @@ body {
 .inner {
   display: inline;
   float: left;
-  width: 98.33333333333333%;
-  margin: 0 0.833333333333333%;
+  width: 98.18181818181819%;
+  margin: 0 0.909090909090909%;
 }
 .left,
 .alignleft {
@@ -183,8 +183,8 @@ body {
   #main {
     display: inline;
     float: left;
-    width: 73.33333333333333%;
-    margin: 0 0.833333333333333%;
+    width: 70.9090909090909%;
+    margin: 0 0.909090909090909%;
   }
 }
 .article-date,
@@ -988,6 +988,14 @@ a.article-title:hover {
 #majorShareWechatIcon:hover #majorShareWechat {
   display: block;
 }
+.majorDate {
+  color: #999;
+  padding: 0 20px;
+}
+.majorDate p {
+  padding: 10px;
+  font-size: 0.8em;
+}
 #comments {
   background: #fff;
   -webkit-box-shadow: 1px 2px 3px #ddd;
@@ -1135,6 +1143,12 @@ a.article-title:hover {
   text-decoration: underline;
 }
 #footer-info {
+  line-height: 2em;
+  font-size: 0.85em;
+  float: left;
+}
+#footer-rightside {
+  float: right;
   line-height: 2em;
   font-size: 0.85em;
 }
@@ -1338,8 +1352,8 @@ pre .javascript .function {
   #sidebar {
     display: inline;
     float: left;
-    width: 23.333333333333332%;
-    margin: 0 0.833333333333333%;
+    width: 25.454545454545453%;
+    margin: 0 0.909090909090909%;
   }
 }
 .widget-wrap {
