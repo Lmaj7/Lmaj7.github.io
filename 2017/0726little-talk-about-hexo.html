@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="工科男的奇幻世界">
 <meta property="og:description" content="记个流水账吧。其实过去了几天都有点记不起当时都做了什么了[捂脸]现在这记性">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-07-27T14:38:50.000Z">
+<meta property="og:updated_time" content="2017-07-28T16:08:50.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hexo杂谈">
 <meta name="twitter:description" content="记个流水账吧。其实过去了几天都有点记不起当时都做了什么了[捂脸]现在这记性">
@@ -87,16 +87,26 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>记个流水账吧。其实过去了几天都有点记不起当时都做了什么了[捂脸]现在这记性<a id="more"></a><br>先哇着坑哈哈哈哈哈</p>
+<hr>
+<h2 id="2017-07-28"><a href="#2017-07-28" class="headerlink" title="2017-07-28"></a>2017-07-28</h2><h3 id="小图标"><a href="#小图标" class="headerlink" title="小图标"></a>小图标</h3><p>今天给博客一些小细节换上了小图标。发现区区小图标其实也是一门学问，要怎么让小图标发挥作用，怎么让界面更加整洁等等。<br>而且这个过程，哈哈，学到了一个东西，以前几乎都不会用到CSS的伪元素，就是 <code>::before</code> 与 <code>::after</code> 。Hexo的博客也带我见识了一波在网页上用字体来代替图片，FontAwesome。用到伪元素也正是因为使用了FontAwesome。</p>
+<p>FontAwesome官方其实提供了一套CSS，在页面里引用这个.css文件之后，就可以方便地在需要的地方使用代码放置图标了。但是Hexo里不一样，用CSS的伪元素来放置图标。</p>
+<p>对比之下，其实各有各的好处。比如需要多处重复地放置的时候，用CSS就方便许多。</p>
+<p>而我修改网站，也沿用了Hexo本身的风格，在CSS里来放置图标。具体的代码差不多像这样子：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.majorDate</span></div><div class="line">  <span class="attribute">color</span>: <span class="number">#999</span></div><div class="line">  <span class="attribute">margin</span>: <span class="number">20px</span> <span class="number">0</span> <span class="number">20px</span> <span class="number">20px</span></div><div class="line">  &amp; <span class="selector-tag">span</span>:before</div><div class="line">    <span class="attribute">font-family</span>: font-icon</div><div class="line">    <span class="attribute">content</span>: <span class="string">"\f044"</span></div><div class="line">    <span class="attribute">padding</span>: <span class="number">0</span> <span class="number">0.2em</span> <span class="number">0</span> <span class="number">0</span></div></pre></td></tr></table></figure></p>
+<p>这是文章下方的“编辑时间”的Stylus代码<br>用 <code>::before</code> 或 <code>::after</code> 就能很方便地放置图标啦。至于 <code>content</code> 里的 Unicode码， 则可以通过在FontAwesome官网上查询得到。</p>
+<h4 id="用字体和用图片的利弊"><a href="#用字体和用图片的利弊" class="headerlink" title="用字体和用图片的利弊"></a>用字体和用图片的利弊</h4><p>用字体小图标，<strong> 可以让文字和图标保持整洁 </strong>，而且不需要专门再写代码去纠结图片和文字对齐的问题。但是毕竟字体制作周期长，自己制作也不方便。比如豆瓣之类的比较小众的网站呢，在FontAwesome上就找不到啦。国内好像也有一些提供图标字体的厂商，不过我不想在这上面死磕了哈哈哈比较换一套字体，再把那些图标一个一个换过去，都是体力活而已了。</p>
+<p>页头的小图标就是用图片做的。用图片，大小不好把握，位置做起来也很麻烦。</p>
+<p>这里又有一个小插曲。当时换上图标之后，发现GitHub那几个字总是飞到天上了。找了很久都找不到原因。后来发现。尼玛！是字体的原因。在 <code>font-family</code> 里，指定了多套字体，而GitHub这几个字中，没有出现中文，所以就使用了考前的另一个字体，高度就不一样了。<br>被自己无语到了哈哈。</p>
+<hr>
 
       
     </div>
-    <div class="majorDate"><span>编辑于 2017-07-27 22:38</span></div>
+    <div class="majorDate"><span>编辑于 2017-07-29 00:08</span></div>
     <footer class="article-footer">
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/programming/">编程</a></li></ul>
 
       
-        <a data-url="https://lmaj7.github.io/2017/0726little-talk-about-hexo.html" data-id="cj5o12zhi0001xwf6khvew8dy" class="article-share-link">分享</a>
+        <a data-url="https://lmaj7.github.io/2017/0726little-talk-about-hexo.html" data-id="cj5o2gu8l0001usf6kur6ylb4" class="article-share-link">分享</a>
       
     </footer>
   </div>
