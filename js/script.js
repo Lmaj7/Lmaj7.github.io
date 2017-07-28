@@ -66,7 +66,7 @@
       var box = $(html);
 
       $('body').append(box);
-      new QRCode(document.getElementById("majorShareWechat"), {text:url,width:100,height:100});
+      new QRCode(document.getElementById('majorShareWechat'), {text:url,width:100,height:100});
     }
 
     $('.article-share-box.on').hide();
