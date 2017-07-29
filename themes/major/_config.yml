@@ -1,0 +1,54 @@
+# Header
+menu:
+  主页:
+    url: /
+    image: /images/icons/home_32.png
+  归档:
+    url: /archives
+    image: /images/icons/archives_32.png
+  GitHub:
+    url: https://github.com/Lmaj7
+    image: /images/icons/github_32.png
+  网易音乐人:
+    url: http://music.163.com/#/artist?id=12464223
+    image: /images/icons/netease_32.png
+#rss: /atom.xml
+
+# Content
+excerpt_link: 阅读全文
+fancybox: true
+
+# Sidebar
+sidebar: right
+widgets:
+- major
+#- category
+#- tag
+- tagcloud
+- archive
+- recent_posts
+majorSidebar:
+  img: /css/images/major.jpg
+  content: <p><b>Major</b><br /><span>立志成为业余音乐人</span><br /><span><a href="//mycraft.cc">MineCraft我的手艺</a>创始人</span></p><p><b>教育经历</b><br /><span>深圳大学&nbsp;测控技术与仪器</span><br /><span>普宁二中</span></p><p><b>所在行业</b><br /><span>计算机软件</span></p><p><b>居住地</b><br /><span>深圳市、揭阳市</span></p>
+
+# display widgets at the bottom of index pages (pagination == 2)
+index_widgets:
+# - category
+# - tagcloud
+# - archive
+
+# widget behavior
+archive_type: 'monthly'
+show_count: false
+
+# Miscellaneous
+google_analytics:
+favicon: /favicon.ico
+twitter:
+google_plus:
+fb_admins:
+fb_app_id:
+
+footer_analyse:
+  content: <script src="https://s13.cnzz.com/z_stat.php?id=1263054760&web_id=1263054760" language="JavaScript"></script>
+  disp: true
