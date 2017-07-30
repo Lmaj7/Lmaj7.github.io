@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="工科男的奇幻世界">
 <meta property="og:description" content="记个流水账吧。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-07-30T08:29:50.000Z">
+<meta property="og:updated_time" content="2017-07-30T11:21:50.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hexo杂谈">
 <meta name="twitter:description" content="记个流水账吧。">
@@ -109,6 +109,7 @@
 <p>对比之下，其实各有各的好处。比如需要多处重复地放置的时候，用 CSS 就方便许多。</p>
 <p>而我修改网站，也沿用了 Hexo 本身的风格，在 CSS 里来放置图标。具体的代码差不多像这样子：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.majorDate</span></div><div class="line">  <span class="attribute">color</span>: <span class="number">#999</span></div><div class="line">  <span class="attribute">margin</span>: <span class="number">20px</span> <span class="number">0</span> <span class="number">20px</span> <span class="number">20px</span></div><div class="line">  &amp; <span class="selector-tag">span</span>:before</div><div class="line">    <span class="attribute">font-family</span>: font-icon</div><div class="line">    <span class="attribute">content</span>: <span class="string">"\f044"</span></div><div class="line">    <span class="attribute">padding</span>: <span class="number">0</span> <span class="number">0.2em</span> <span class="number">0</span> <span class="number">0</span></div></pre></td></tr></table></figure></p>
 <p>这是文章下方的“编辑时间”的 Stylus 代码<br>用 <code>::before</code> 或 <code>::after</code> 就能很方便地放置图标啦。至于 <code>content</code> 里的 Unicode码， 则可以通过在 FontAwesome 官网上查询得到。</p>
+<p>标签栏比较特殊，需要修改到 <code>node_modules/hexo/lib/plugins/helper/list_tags.js</code> 里面的代码。因为标签栏的 <code>ul</code> 和 <code>li</code> 是一起生成的。</p>
 <h3 id="tlk-fnts">用字体和用图片的利弊</h3>
 
 <p>用字体小图标，<strong> 可以让文字和图标保持整洁 </strong>，而且不需要专门再写代码去纠结图片和文字对齐的问题。但是毕竟字体制作周期长，自己制作也不方便。比如豆瓣之类的比较小众的网站呢，在FontAwesome上就找不到啦。国内好像也有一些提供图标字体的厂商，不过我不想在这上面死磕了哈哈哈比较换一套字体，再把那些图标一个一个换过去，都是体力活而已了。</p>
@@ -128,13 +129,13 @@
 
       
     </div>
-    <div class="majorDate"><span>编辑于 2017-07-30 16:29</span></div>
+    <div class="majorDate"><span>编辑于 2017-07-30 19:21</span></div>
     <footer class="article-footer">
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/programming/">编程</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="majorTags"></a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/programming/">编程</a></li></ul>
 
       
-        <a data-url="https://lmaj7.github.io/2017/0726little-talk-about-hexo.html" data-id="cj5qkitj50001rcf6d110j3q1" class="article-share-link">分享</a>
+        <a data-url="https://lmaj7.github.io/2017/0726little-talk-about-hexo.html" data-id="cj5qkoohf0003xkf60ma96z63" class="article-share-link">分享</a>
       
     </footer>
   </div>
