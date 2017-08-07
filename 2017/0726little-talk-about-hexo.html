@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="工科男的奇幻世界">
 <meta property="og:description" content="记个流水账吧。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-07-30T11:21:50.000Z">
+<meta property="og:updated_time" content="2017-08-07T04:32:50.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hexo杂谈">
 <meta name="twitter:description" content="记个流水账吧。">
@@ -100,6 +100,10 @@
 <li><a href="#tlk-shrbtn">谈谈分享按钮</a></li>
 </ul>
 </li>
+<li>2017-08-07<ul>
+<li><a href="#tlk-md">Markdown的一个奇技淫巧</a></li>
+</ul>
+</li>
 </ul>
 <hr>
 <h2 id="2017-07-28"><a href="#2017-07-28" class="headerlink" title="2017-07-28"></a>2017-07-28</h2><h3 id="tlk-icons">小图标</h3>
@@ -109,33 +113,43 @@
 <p>对比之下，其实各有各的好处。比如需要多处重复地放置的时候，用 CSS 就方便许多。</p>
 <p>而我修改网站，也沿用了 Hexo 本身的风格，在 CSS 里来放置图标。具体的代码差不多像这样子：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.majorDate</span></div><div class="line">  <span class="attribute">color</span>: <span class="number">#999</span></div><div class="line">  <span class="attribute">margin</span>: <span class="number">20px</span> <span class="number">0</span> <span class="number">20px</span> <span class="number">20px</span></div><div class="line">  &amp; <span class="selector-tag">span</span>:before</div><div class="line">    <span class="attribute">font-family</span>: font-icon</div><div class="line">    <span class="attribute">content</span>: <span class="string">"\f044"</span></div><div class="line">    <span class="attribute">padding</span>: <span class="number">0</span> <span class="number">0.2em</span> <span class="number">0</span> <span class="number">0</span></div></pre></td></tr></table></figure></p>
 <p>这是文章下方的“编辑时间”的 Stylus 代码<br>用 <code>::before</code> 或 <code>::after</code> 就能很方便地放置图标啦。至于 <code>content</code> 里的 Unicode码， 则可以通过在 FontAwesome 官网上查询得到。</p>
-<p>标签栏比较特殊，需要修改到 <code>node_modules/hexo/lib/plugins/helper/list_tags.js</code> 里面的代码。因为标签栏的 <code>ul</code> 和 <code>li</code> 是一起生成的。</p>
+<p>标签栏比较特殊，需要修改到 <code>node_modules/hexo/lib/plugins/helper/list_tags.js</code> 里面的代码。因为标签栏的 <code>ul</code> 和 <code>li</code> 是一起生成的。<br><br><br></p>
 <h3 id="tlk-fnts">用字体和用图片的利弊</h3>
 
 <p>用字体小图标，<strong> 可以让文字和图标保持整洁 </strong>，而且不需要专门再写代码去纠结图片和文字对齐的问题。但是毕竟字体制作周期长，自己制作也不方便。比如豆瓣之类的比较小众的网站呢，在FontAwesome上就找不到啦。国内好像也有一些提供图标字体的厂商，不过我不想在这上面死磕了哈哈哈比较换一套字体，再把那些图标一个一个换过去，都是体力活而已了。</p>
 <p>页头的小图标就是用图片做的。用图片，大小不好把握，位置做起来也很麻烦。</p>
-<p>这里又有一个小插曲。当时换上图标之后，发现GitHub那几个字总是飞到天上了。找了很久都找不到原因。后来发现。尼玛！是字体的原因。在 <code>font-family</code> 里，指定了多套字体，而 GitHub 这几个字中，没有出现中文，所以就使用了考前的另一个字体，高度就不一样了。<br>被自己无语到了哈哈。</p>
+<p>这里又有一个小插曲。当时换上图标之后，发现GitHub那几个字总是飞到天上了。找了很久都找不到原因。后来发现。尼玛！是字体的原因。在 <code>font-family</code> 里，指定了多套字体，而 GitHub 这几个字中，没有出现中文，所以就使用了考前的另一个字体，高度就不一样了。<br>被自己无语到了哈哈。<br><br><br></p>
 <hr>
 <h2 id="2017-07-30"><a href="#2017-07-30" class="headerlink" title="2017-07-30"></a>2017-07-30</h2><h3 id="tlk-srbtn">谈谈搜索按钮</h3>
 
 <p>Hexo 的 LandScape 主题所附带的搜索栏，默认使用的是谷歌搜索。<br>直接一个 get 方式，往谷歌丢搜索内容。 <code>form</code> 里面还有一个隐藏的 <code>input</code> ，它的值是网站的地址，于是等于给谷歌丢了两个属性，一个是搜索的内容，一个是网站的地址。<br>但是因为国内原因emmm谷歌用不了，所以我就想把搜索框换成其他搜索引擎。某度和Bing，我都没有找到相关的资料，指示可以用 get 的方式来根据域名筛选搜索结果。我所知道的仍然是传统的使用 <code>SITE: XXX</code> 的方式。<br>而这段关键字，没办法承载到 get 的信息里面。所以，只能动用JS来往输入的内容加入这段关键字了！</p>
 <p>JS代码也很简单，如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">majorSearchResp</span>(<span class="params">search</span>)</span>&#123;</div><div class="line">    s=<span class="built_in">document</span>.getElementById(<span class="string">"majorSearchInput"</span>);</div><div class="line">    s.value=search.q.value+<span class="string">"+site:lmaj7.github.io"</span>;</div><div class="line">    <span class="built_in">document</span>.getElementById(<span class="string">"majorSearchForm"</span>).submit();</div><div class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><br><br></p>
 <h3 id="tlk-shrbtn">谈谈分享按钮</h3>
 
 <p>Hexo 的 LandScape 主题所使用的分享按钮，默认是分享到四个大陆上不去的网站(￢_￢)，而在国内使用的是微信，qq，微博比较多一些。<br>（说到这里，好奇一下哈哈哈。改这个分享按钮的时候，愣是不知道还有什么可以丢进来的了。到处去看国内还有什么社交的软件，翻来翻去翻来翻去都翻不到什么！最近感觉越长大社交软件用的越少。是年龄原因还是这个世界变了呢！！<code>[捂脸]</code>）</p>
 <p>QQ 和 微博，都可以通过链接的方式进入分享页面。（再吐槽一下，QQ 的开发者文档不知道多久没更新了！！！<code>[捂脸]</code>，各种用不了，最后还是去别的地方点了分享然后抄的链接格式）</p>
 <p>但是微信就不行啦，微信只能通过扫描二维码进入页面之后再在手机点击分享，emmm，所以很尴尬，要生成二维码。</p>
-<p>搜索了下，就发现了一个叫做 <code>qrcode.js</code> 的库，哈哈哈现在好方便嗯干什么都能找到能用得上的库唉！！这下就方便啦，把页面链接丢进去，再吐出来个二维码就行了哼哼。</p>
+<p>搜索了下，就发现了一个叫做 <code>qrcode.js</code> 的库，哈哈哈现在好方便嗯干什么都能找到能用得上的库唉！！这下就方便啦，把页面链接丢进去，再吐出来个二维码就行了哼哼。<br><br><br></p>
+<hr>
+<h2 id="2017-08-07"><a href="#2017-08-07" class="headerlink" title="2017-08-07"></a>2017-08-07</h2><h3 id="tlk-md">Markdown的一个奇技淫巧</h3>
+
+<p>因为这篇博文可能比较长，所以就想要找一个方法，生成类似于各种百科网站那样的导航。因为不是每一篇文章都需要导航，所以没有必要专门去修改文章页的生成方式之类的，而且去修改，也是老麻烦了。</p>
+<p>于是网上去搜，搜索到的结果都是各种用 js 啊之类的，很麻烦emmm。</p>
+<p>想到这种导航，其实就是一个 html的锚点，而 <code>MarkDown</code> 又支持 html ，所以→→，解决方法就来了：</p>
+<p>比如这篇文章的导航，是这样子的：<br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="bullet">* </span>2017-07-28</div><div class="line"> * [<span class="string">小图标</span>](<span class="link">#tlk-icons</span>)</div><div class="line"> * [<span class="string">用字体和用图片的利弊</span>](<span class="link">#tlk-fnts</span>)</div></pre></td></tr></table></figure></p>
+<p>然后其对应的标题则是这样子的：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">h3</span> <span class="attr">id</span>=<span class="string">"tlk-icons"</span>&gt;</span>小图标<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>问题迎刃而解。</p>
 
       
     </div>
-    <div class="majorDate"><span>编辑于 2017-07-30 19:21</span></div>
+    <div class="majorDate"><span>编辑于 2017-08-07 12:32</span></div>
     <footer class="article-footer">
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="majorTags"></a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/programming/">编程</a></li></ul>
 
       
-        <a data-url="https://lmaj7.github.io/2017/0726little-talk-about-hexo.html" data-id="cj5s4scco0001sgf6zdniuxe7" class="article-share-link">分享</a>
+        <a data-url="https://lmaj7.github.io/2017/0726little-talk-about-hexo.html" data-id="cj61njgg40000pgf6pj4eqtgu" class="article-share-link">分享</a>
       
     </footer>
   </div>
