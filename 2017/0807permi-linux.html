@@ -3,18 +3,20 @@
 <head>
   <meta charset="utf-8">
   
-  <title>标签: 编程 | 工科男的奇幻世界</title>
+  <title>Linux权限的表示方法 | 工科男的奇幻世界</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="machine learning, 机器学习, 算法, web">
-<meta property="og:type" content="website">
-<meta property="og:title" content="工科男的奇幻世界">
-<meta property="og:url" content="https://lmaj7.github.io/tags/programming/index.html">
+  <meta name="description" content="很久前因为 MineCraft 服务器，就接触到了 Linux 。不过那时候是用到啥上网搜啥，所以一直以来对 Linux 都没有一个比较系统和全面的认识。最近随着学习的深入，越来越感受到掌握 Linux 的重要性。于是买了本 鸟哥的Linux私房菜 看了起来。">
+<meta name="keywords" content="编程,Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux权限的表示方法">
+<meta property="og:url" content="https://lmaj7.github.io/2017/0807permi-linux.html">
 <meta property="og:site_name" content="工科男的奇幻世界">
-<meta property="og:description" content="machine learning, 机器学习, 算法, web">
+<meta property="og:description" content="很久前因为 MineCraft 服务器，就接触到了 Linux 。不过那时候是用到啥上网搜啥，所以一直以来对 Linux 都没有一个比较系统和全面的认识。最近随着学习的深入，越来越感受到掌握 Linux 的重要性。于是买了本 鸟哥的Linux私房菜 看了起来。">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-08-07T07:52:04.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="工科男的奇幻世界">
-<meta name="twitter:description" content="machine learning, 机器学习, 算法, web">
+<meta name="twitter:title" content="Linux权限的表示方法">
+<meta name="twitter:description" content="很久前因为 MineCraft 服务器，就接触到了 Linux 。不过那时候是用到啥上网搜啥，所以一直以来对 Linux 都没有一个比较系统和全面的认识。最近随着学习的深入，越来越感受到掌握 Linux 的重要性。于是买了本 鸟哥的Linux私房菜 看了起来。">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -62,78 +64,68 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/0807permi-linux.html" class="archive-article-date">
+        <section id="main"><article id="post-permi-linux" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/0807permi-linux.html" class="article-date">
   <time datetime="2017-08-07T07:52:04.000Z" itemprop="datePublished">2017-08-07 15:52</time>
 </a>
-      
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/0807permi-linux.html">Linux权限的表示方法</a>
+    <h1 class="article-title" itemprop="name">
+      Linux权限的表示方法
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/0727thoughts-about-making-games.html" class="archive-article-date">
-  <time datetime="2017-07-27T14:18:30.000Z" itemprop="datePublished">2017-07-27 22:18</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/0727thoughts-about-making-games.html">用C写小游戏的一点感想</a>
-    </h1>
-  
+        <p>很久前因为 MineCraft 服务器，就接触到了 Linux 。不过那时候是用到啥上网搜啥，所以一直以来对 Linux 都没有一个比较系统和全面的认识。<br>最近随着学习的深入，越来越感受到掌握 Linux 的重要性。于是买了本 鸟哥的Linux私房菜 看了起来。<br><a id="more"></a></p>
+<p>到权限这一节，发现一点特别好玩的！。</p>
+<p>Linux下的文件的权限可以由3个0-7的数字来表示。刚开始觉得为什么这么奇怪哈哈哈哈但是仔细一想！原来如此！！</p>
+<p>要看到一个文件的权限，可以使用 <code>ls -al</code> 命令。</p>
+<p>每个文件的权限都分为3个组，每个组里面又分为3个，看起来是这样子的：<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">-rwxr--r--   1 root root         4 Aug  7 15:50 sb</div></pre></td></tr></table></figure></p>
+<p>最开始的一个横杠代表的是文件的类型（文件夹与否），接下来每3个字母为1组，三个字母分别是：<br>r: 读<br>w: 写<br>x: 执行</p>
+<pre><code>而三个组分别为，头3个字母表示 文件的拥有者 对这个文件的权限。
+第二个3个字母表示 和拥有者同用户组的用户 对这个文件的权限。
+第三个组表示的则是其他用户权限。
+</code></pre><p>到了更改用户权限的地方，就比较好玩了。<br>更改用户权限用的命令是 <code>chmod</code> 。拿上面的文件举例子，如果我要把它的权限改成 <code>-rw-r--r--</code> ， 那需要的命令是：<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">chmod 644 sb</div></pre></td></tr></table></figure></p>
+<p>这个644怎么来的呢<br>其实，因为rwx，只有“有r权限或者没r权限”，“有w权限或者没有w权限”和“有x权限或者没有x权限”，即每个字母只有两种状态。那么3个放到一起，就可以看做一串3位的二进制数，3位二进制数的取值就是000到111，也即十进制的0~7了！<br>现在很好记忆了吧！</p>
+<pre><code>r4 w2 x1
+</code></pre><p>其实就是这么来的。</p>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/0726little-talk-about-hexo.html" class="archive-article-date">
-  <time datetime="2017-07-26T15:45:33.000Z" itemprop="datePublished">2017-07-26 23:45</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/0726little-talk-about-hexo.html">hexo杂谈</a>
-    </h1>
-  
+    </div>
+    <div class="majorDate"><span>编辑于 2017-08-07 15:52</span></div>
+    <footer class="article-footer">
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="majorTags"></a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/programming/">编程</a></li></ul>
 
-    </header>
+      
+        <a data-url="https://lmaj7.github.io/2017/0807permi-linux.html" data-id="cj61vucl80000ccf66njjpi0b" class="article-share-link">分享</a>
+      
+    </footer>
   </div>
-</article>
+  
+    
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2017/0731grown-up.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">长大了</div>
+    </a>
   
+</nav>
 
+  
+</article>
 </section>
         
           <aside id="sidebar">
