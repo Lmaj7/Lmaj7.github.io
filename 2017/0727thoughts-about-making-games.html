@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="工科男的奇幻世界">
 <meta property="og:description" content="最近在知乎看到了一个不错的专栏，讲了讲用C语言来码一些小游戏，想看戳：做游戏，学编程（C语言）我的代码在我的GitHub项目上面 之前花了一个寒假啃完了 C Primer Plus ，发现到最后都不知道我要拿C来干什么，所以就给自己找了点事情做。之前是试着用C来码算法，不过还没有码出成就感呢就看到了这个专栏，一下子像发现了新世界哈哈哈哈！！！">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-07-27T15:19:59.868Z">
+<meta property="og:updated_time" content="2017-08-07T12:23:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="用C写小游戏的一点感想">
 <meta name="twitter:description" content="最近在知乎看到了一个不错的专栏，讲了讲用C语言来码一些小游戏，想看戳：做游戏，学编程（C语言）我的代码在我的GitHub项目上面 之前花了一个寒假啃完了 C Primer Plus ，发现到最后都不知道我要拿C来干什么，所以就给自己找了点事情做。之前是试着用C来码算法，不过还没有码出成就感呢就看到了这个专栏，一下子像发现了新世界哈哈哈哈！！！">
@@ -92,16 +92,19 @@
 <p>在用黑框框码小游戏的过程中就遇到了很多问题。比如说，怎么清屏怎么刷新啦，怎么设定一点延迟啦。<br>如果不是老师的专栏，我真不知道有 <code>windows.h</code> 和 <code>conio.h</code> 这些东西。关于这些比较少见的库，还真的不知道怎么去查手册。而且如果不知道这些库，做起这些小游戏会麻烦很多！！</p>
 <p>不过说到底，控制台本身的设计也不是让我们玩游戏的嘛→→</p>
 <p>这些库的历史对现在的我来说也是有点迷哈哈哈哈，摸不着头脑。网上的资料少得可怜，也不知道上哪找说明手册去。</p>
+<hr>
+<h2 id="2017-08-07"><a href="#2017-08-07" class="headerlink" title="2017-08-07"></a>2017-08-07</h2><p>最近写的小游戏（第一课的小球和第三课的Flappy Bird），我都试着给他们加上了加速度这个物理量。不然的话突变的速度看起来会非常突兀。<br>说到这里，有点好奇是否加速度这个物理量会给游戏引擎带来很多麻烦？因为看起来很多很成熟的游戏（比如十多年前的半条命2，使命召唤）似乎都没有表现出加速度这一个特性。</p>
+<p>在之前的小游戏里，因为是用字符来描绘物体，一个命令行窗口顶多也就是几十x几十的分辨率大像素点，而且时间尺度上跨度也比较大，所以没有上浮点数。用整形的变量，在速度比较大的时候就很不容易控制了，每一次刷新可能走过七八个“像素点”，可以说是很粗制滥造了哈哈哈。但是即使是这样，依然能感受到加速度这个物理量带来的真实感。</p>
 
       
     </div>
-    <div class="majorDate"><span>编辑于 2017-07-27 23:19</span></div>
+    <div class="majorDate"><span>编辑于 2017-08-07 20:23</span></div>
     <footer class="article-footer">
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="majorTags"></a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/programming/">编程</a></li></ul>
 
       
-        <a data-url="https://lmaj7.github.io/2017/0727thoughts-about-making-games.html" data-id="cj61wdedq00037wf6x0rgg4ch" class="article-share-link">分享</a>
+        <a data-url="https://lmaj7.github.io/2017/0727thoughts-about-making-games.html" data-id="cj6bm1ze7000084f6qyurpkmg" class="article-share-link">分享</a>
       
     </footer>
   </div>
@@ -146,7 +149,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/life/" style="font-size: 20px;">生活</a> <a href="/tags/programming/" style="font-size: 20px;">编程</a> <a href="/tags/caprice/" style="font-size: 10px;">随想</a> <a href="/tags/music/" style="font-size: 10px;">音乐</a>
+      <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/sentiment/" style="font-size: 13.33px;">情感</a> <a href="/tags/life/" style="font-size: 20px;">生活</a> <a href="/tags/programming/" style="font-size: 16.67px;">编程</a> <a href="/tags/caprice/" style="font-size: 10px;">随想</a> <a href="/tags/music/" style="font-size: 10px;">音乐</a>
     </div>
   </div>
 
@@ -168,6 +171,10 @@
       <ul>
         
           <li>
+            <a href="/2017/0814viewpoint-of-love.html">恋爱观</a>
+          </li>
+        
+          <li>
             <a href="/2017/0807permi-linux.html">Linux权限的表示方法</a>
           </li>
         
@@ -181,10 +188,6 @@
         
           <li>
             <a href="/2017/0730music-n-stories.html">我的音乐和他们背后的故事</a>
-          </li>
-        
-          <li>
-            <a href="/2017/0727thoughts-about-making-games.html">用C写小游戏的一点感想</a>
           </li>
         
       </ul>
