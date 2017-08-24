@@ -156,9 +156,12 @@
 
 .article-tag-list-link
   &:before
+    content: "#"
+
+.majorTags
+  &:before
     content: "\f02c"
     font-family: font-icon
-    padding: 0 4px 0 4px
 
 .article-comment-link
   float: right
@@ -328,6 +331,12 @@ $article-share-link
   &:hover
     background: color-wechat
     text-shadow: 0 1px darken(color-wechat, 20%)
+    
+.article-share-douban
+  @extend $article-share-link
+  &:hover
+    background: color-douban
+    text-shadow: 0 1px darken(color-douban, 20%)
 
 .article-gallery
   background: #000
