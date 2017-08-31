@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="工科男的奇幻世界">
 <meta property="og:description" content="记个流水账吧。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-08-07T04:32:50.000Z">
+<meta property="og:updated_time" content="2017-08-31T00:43:50.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hexo杂谈">
 <meta name="twitter:description" content="记个流水账吧。">
@@ -104,6 +104,7 @@
 <li><a href="#tlk-md">Markdown的一个奇技淫巧</a></li>
 </ul>
 </li>
+<li>2017-08-31<br>*<a href="#tch-fix-bug-1">修复一个BUG</a></li>
 </ul>
 <hr>
 <h2 id="2017-07-28"><a href="#2017-07-28" class="headerlink" title="2017-07-28"></a>2017-07-28</h2><h3 id="tlk-icons">小图标</h3>
@@ -140,16 +141,21 @@
 <p>比如这篇文章的导航，是这样子的：<br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="bullet">* </span>2017-07-28</div><div class="line"> * [<span class="string">小图标</span>](<span class="link">#tlk-icons</span>)</div><div class="line"> * [<span class="string">用字体和用图片的利弊</span>](<span class="link">#tlk-fnts</span>)</div></pre></td></tr></table></figure></p>
 <p>然后其对应的标题则是这样子的：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">h3</span> <span class="attr">id</span>=<span class="string">"tlk-icons"</span>&gt;</span>小图标<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></div></pre></td></tr></table></figure></p>
 <p>问题迎刃而解。</p>
+<hr>
+<h2 id="2017-08-31"><a href="#2017-08-31" class="headerlink" title="2017-08-31"></a>2017-08-31</h2><h3 id="tch-fix-bug-1">修复一个BUG</h3>
+
+<p>正在使用的是 <code>LandScape</code> 主题。<br>文章的数量终于多到开始要分页了，但是上一页和下一页的链接文字却是 <code>__(&#39;next&#39;)»</code> 。<br>定位到翻页栏的文件位置是 <code>\layout\_partial\archive.ejs</code> ，分页按钮在最底部。代码更改为<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;%- paginator(&#123;</div><div class="line">  <span class="attr">prev_text</span>: <span class="string">"&amp;laquo;"</span> + __(<span class="string">'prev'</span>),</div><div class="line">  <span class="attr">next_text</span>: __(<span class="string">'next'</span>) + <span class="string">"&amp;raquo;"</span></div><div class="line">&#125;) %&gt;</div></pre></td></tr></table></figure></p>
+<p>Landscape主题原来的代码为：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;%- paginator(&#123;</div><div class="line">  <span class="attr">prev_text</span>: <span class="string">"&amp;laquo;__('prev')"</span>,</div><div class="line">  <span class="attr">next_text</span>: <span class="string">"__('next')&amp;raquo;"</span></div><div class="line">&#125;) %&gt;</div></pre></td></tr></table></figure></p>
 
       
     </div>
-    <div class="majorDate"><span>编辑于 2017-08-07 12:32</span></div>
+    <div class="majorDate"><span>编辑于 2017-08-31 08:43</span></div>
     <footer class="article-footer">
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="majorTags"></a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/programming/">编程</a></li></ul>
 
       
-        <a data-url="https://lmaj7.github.io/2017/0726little-talk-about-hexo.html" data-id="cj6zoswwt00019kf678bv2f3c" class="article-share-link">分享</a>
+        <a data-url="https://lmaj7.github.io/2017/0726little-talk-about-hexo.html" data-id="cj6zq09ng0001vcf672fypj24" class="article-share-link">分享</a>
       
     </footer>
   </div>
@@ -194,7 +200,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/sentiment/" style="font-size: 16.67px;">情感</a> <a href="/tags/life/" style="font-size: 20px;">生活</a> <a href="/tags/programming/" style="font-size: 13.33px;">编程</a> <a href="/tags/caprice/" style="font-size: 13.33px;">随想</a> <a href="/tags/music/" style="font-size: 10px;">音乐</a>
+      <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/sentiment/" style="font-size: 20px;">情感</a> <a href="/tags/life/" style="font-size: 20px;">生活</a> <a href="/tags/programming/" style="font-size: 15px;">编程</a> <a href="/tags/caprice/" style="font-size: 15px;">随想</a>
     </div>
   </div>
 
