@@ -3,20 +3,23 @@
 <head>
   <meta charset="utf-8">
   
-  <title>虐心 | 工科男的奇幻世界</title>
+  <title>动态余量，位深度与动态范围 | 工科男的奇幻世界</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="我不想听那些人描述他的惨状。我不相信那个满身血污衣衫破烂的人是在说他。他那么爱干净整洁的一个人，绝对不会这样子。我不相信那些人说的救不过来的人是他">
-<meta name="keywords" content="情感">
+  <meta name="description" content="最近在学习数字音频处理的过程中，遇到了一个说法：16bit 位深的音频可以有 96dB 的动态范围(dynamic range)，24bit 位深的音频可以有 144dB 的动态范围。">
+<meta name="keywords" content="数字音频">
 <meta property="og:type" content="article">
-<meta property="og:title" content="虐心">
-<meta property="og:url" content="https://lmaj7.github.io/2017/0828an-aching-article.html">
+<meta property="og:title" content="动态余量，位深度与动态范围">
+<meta property="og:url" content="https://lmaj7.github.io/2017/0903headroom-bit-depth-and-dynamic-range.html">
 <meta property="og:site_name" content="工科男的奇幻世界">
-<meta property="og:description" content="我不想听那些人描述他的惨状。我不相信那个满身血污衣衫破烂的人是在说他。他那么爱干净整洁的一个人，绝对不会这样子。我不相信那些人说的救不过来的人是他">
+<meta property="og:description" content="最近在学习数字音频处理的过程中，遇到了一个说法：16bit 位深的音频可以有 96dB 的动态范围(dynamic range)，24bit 位深的音频可以有 144dB 的动态范围。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-08-28T08:15:45.000Z">
+<meta property="og:image" content="https://lmaj7.github.io/imgs/2017/09/03/SNR_dynamic_range.gif">
+<meta property="og:image" content="https://lmaj7.github.io/imgs/2017/09/03/dB_Meter.png">
+<meta property="og:updated_time" content="2017-09-03T04:31:12.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="虐心">
-<meta name="twitter:description" content="我不想听那些人描述他的惨状。我不相信那个满身血污衣衫破烂的人是在说他。他那么爱干净整洁的一个人，绝对不会这样子。我不相信那些人说的救不过来的人是他">
+<meta name="twitter:title" content="动态余量，位深度与动态范围">
+<meta name="twitter:description" content="最近在学习数字音频处理的过程中，遇到了一个说法：16bit 位深的音频可以有 96dB 的动态范围(dynamic range)，24bit 位深的音频可以有 144dB 的动态范围。">
+<meta name="twitter:image" content="https://lmaj7.github.io/imgs/2017/09/03/SNR_dynamic_range.gif">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -64,10 +67,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-an-aching-article" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-headroom-bit-depth-and-dynamic-range" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/0828an-aching-article.html" class="article-date">
-  <time datetime="2017-08-28T08:15:45.000Z" itemprop="datePublished">2017-08-28 16:15</time>
+    <a href="/2017/0903headroom-bit-depth-and-dynamic-range.html" class="article-date">
+  <time datetime="2017-09-03T04:31:12.000Z" itemprop="datePublished">2017-09-03 12:31</time>
 </a>
     
   </div>
@@ -78,7 +81,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      虐心
+      动态余量，位深度与动态范围
     </h1>
   
 
@@ -86,18 +89,26 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>我不想听那些人描述他的惨状。我不相信那个满身血污衣衫破烂的人是在说他。他那么爱干净整洁的一个人，绝对不会这样子。我不相信那些人说的救不过来的人是他<a id="more"></a>，<br>他那么爱我，怎么会忍心。他真过分。说好要娶我的，现在丢下我，自己跑了。去你妈的世界。去你妈的我爱你。你一点也不爱我，你要是爱我，你一定会保护好自己，一定会力挽狂澜就为了将自己留在这个世界上。我在走廊上哭得天昏地暗，脑子里满是他对我笑的样子。最后哭不动了，坐在椅子上，发呆。最后一通电话里他对我说，宝宝啊，我买了你最爱吃的章鱼丸子，你一会一定要打扮的漂漂亮亮的，吃完章鱼丸子，我们去看电影，吃火锅。<br>……<br><a href="https://www.zhihu.com/question/63396314/answer/210803610" target="_blank" rel="external">在知乎查看全文</a></p>
-<p>作者：匿名用户<br>链接：<a href="https://www.zhihu.com/question/63396314/answer/210803610" target="_blank" rel="external">https://www.zhihu.com/question/63396314/answer/210803610</a><br>来源：知乎<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+        <p>最近在学习数字音频处理的过程中，遇到了一个说法：16bit 位深的音频可以有 96dB 的动态范围(dynamic range)，24bit 位深的音频可以有 144dB 的动态范围。<a id="more"></a><br>Emmm，这就很奇怪了！当时脑子里蹦出来的第一个想法是：数字电路里，难道动态范围不是电压为0（-Inf）到最大电平（0dB）吗！<br>所以就开始翻起了资料。<sup>[1]</sup></p>
+<p>原来，动态范围指的是可以达到的最大电平和最小电平的RMS值的差值。<sup>[2]</sup><br><br></p>
+<p>这就涉及到了量化精度的问题。</p>
+<p>在AD转换的过程中，连续的信号变成了离散的信号，这个过程就带来了误差。<br>这里需要先提到一个概念，叫做dBFS (dB Full Scale)。<br>dBFS指的是数字系统中所能达到的最大电平。由于AD或者DA转换器的限制，数字信号只能达到特定的一个最大电压。<sup>[3]</sup>在数字设备中，信号以二进制编码，而每一帧信号都只能由有限位二进制数来表达。那么就存在一个能表达的最大范围。这个最大值，就叫做Full Scale。那么数字音频系统中能达到的其他电平，都会小于这个满刻度的电平，因此在数字音频处理中，信号的大小都为负值。</p>
+<p>位深则影响了在0电平到最大电平之间划分的采样区间的大小。落在这样一个区间里的值在采样之后，都成为了相同的一个值。比如说如果位深为1bit，那么只有0和1两种状态。如果有这样的一个AD转换器，来采集-1V~1V范围内的信号，那么无论信号是-1V还是-0.5V还是-0.25V，经过AD转换之后都被记录为0，无论信号是1V还是0.75V还是0.5V，采样后都被记录为1。</p>
+<p>这个误差称为量化误差(quantization error)。量化误差在信号中的表现类似于噪声，有很宽的频谱，于是可以用信噪比来衡量。并且可以由公式算得：<sup>[4]</sup><br><img src="/imgs/2017/09/03/SNR_dynamic_range.gif" alt=""></p>
+<p>那么为什么量化位深会影响动态范围的问题也就迎刃而解了。<br>量化位深会影响到可以有效记录下（也即不被量化噪声掩盖）的最小波形，所以记录下的信号的最小值会受到量化位深的影响。<br><br></p>
+<p>讲完动态范围，又想到了一个问题。这个问题我还不是十分明白，还希望懂的人可以指点一下。<br>我们在各种音频处理软件里，都可以处理到 0dB 以上电平的声音。那么软件是如何做到的呢？<br><img src="/imgs/2017/09/03/dB_Meter.png" alt=""></p>
+<p>搜索了一下，得到了一个叫做动态余量(Headroom)的概念。<sup>[5]</sup><br>所以是否是在音频处理软件里，限制了一个0dBFS以下的值作为刻度表0dB的标准呢？从而才可以稍微允许一些超过0dB的声音出现而不导致削波失真。但是这样的话，不又浪费了一些动态范围吗？<br>我做了一个测试，在软件里，把音量调到0dB以上，仍然可以听到不失真的声音。然后把这个音频导出之后播放，得到的声音就是失真的。</p>
+<p>[1] <a href="https://www.sweetwater.com/forums/showthread.php?53451-Why-Bit-Depth-has-anything-to-do-with-level-dynamics" target="_blank" rel="external">Why Bit Depth has anything to do with level dynamics?? - Sweetwater Forums</a><br>[2] <a href="Dynamic Range - Wikipedia">https://en.wikipedia.org/wiki/Dynamic_range#Audio</a><br>[3] <a href="dBFS - Wikipedia">https://en.wikipedia.org/wiki/DBFS</a><br>[4] 卢官明, 宗昉.数字音频原理及应用[M].机械工业出版社, 2012:31-33<br>[5] <a href="https://en.wikipedia.org/wiki/Headroom_(audio_signal_processing)#Digital_audio" target="_blank" rel="external">Headroom_(audio_signal_processing) - Wikipedia</a></p>
 
       
     </div>
-    <div class="majorDate"><span>编辑于 2017-08-28 16:15</span></div>
+    <div class="majorDate"><span>编辑于 2017-09-03 12:31</span></div>
     <footer class="article-footer">
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="majorTags"></a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sentiment/">情感</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="majorTags"></a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/digital-audio/">数字音频</a></li></ul>
 
       
-        <a data-url="https://lmaj7.github.io/2017/0828an-aching-article.html" data-id="cj74988px000fb0f6fwy3eqsu" class="article-share-link">分享</a>
+        <a data-url="https://lmaj7.github.io/2017/0903headroom-bit-depth-and-dynamic-range.html" data-id="cj74988pz000hb0f6nf3of241" class="article-share-link">分享</a>
       
     </footer>
   </div>
@@ -105,19 +116,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2017/0903headroom-bit-depth-and-dynamic-range.html" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          动态余量，位深度与动态范围
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/0826habits-forced-to-drop.html" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2017/0828an-aching-article.html" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">被迫改掉的习惯</div>
+      <div class="article-nav-title">虐心</div>
     </a>
   
 </nav>
