@@ -15,7 +15,9 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://lmaj7.github.io/imgs/2017/09/03/SNR_dynamic_range.gif">
 <meta property="og:image" content="https://lmaj7.github.io/imgs/2017/09/03/dB_Meter.png">
-<meta property="og:updated_time" content="2017-09-03T04:31:12.000Z">
+<meta property="og:image" content="https://lmaj7.github.io/imgs/2017/09/03/16bit_hr.png">
+<meta property="og:image" content="https://lmaj7.github.io/imgs/2017/09/03/32bit_hr.png">
+<meta property="og:updated_time" content="2017-09-08T16:31:12.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="动态余量，位深度与动态范围">
 <meta name="twitter:description" content="最近在学习数字音频处理的过程中，遇到了一个说法：16bit 位深的音频可以有 96dB 的动态范围(dynamic range)，24bit 位深的音频可以有 144dB 的动态范围。">
@@ -98,17 +100,21 @@
 <p>那么为什么量化位深会影响动态范围的问题也就迎刃而解了。<br>量化位深会影响到可以有效记录下（也即不被量化噪声掩盖）的最小波形，所以记录下的信号的最小值会受到量化位深的影响。<br><br></p>
 <p>讲完动态范围，又想到了一个问题。这个问题我还不是十分明白，还希望懂的人可以指点一下。<br>我们在各种音频处理软件里，都可以处理到 0dB 以上电平的声音。那么软件是如何做到的呢？<br><img src="/imgs/2017/09/03/dB_Meter.png" alt=""></p>
 <p>搜索了一下，得到了一个叫做动态余量(Headroom)的概念。<sup>[5]</sup><br>所以是否是在音频处理软件里，限制了一个0dBFS以下的值作为刻度表0dB的标准呢？从而才可以稍微允许一些超过0dB的声音出现而不导致削波失真。但是这样的话，不又浪费了一些动态范围吗？<br>我做了一个测试，在软件里，把音量调到0dB以上，仍然可以听到不失真的声音。然后把这个音频导出之后播放，得到的声音就是失真的。</p>
-<p>[1] <a href="https://www.sweetwater.com/forums/showthread.php?53451-Why-Bit-Depth-has-anything-to-do-with-level-dynamics" target="_blank" rel="external">Why Bit Depth has anything to do with level dynamics?? - Sweetwater Forums</a><br>[2] <a href="Dynamic Range - Wikipedia">https://en.wikipedia.org/wiki/Dynamic_range#Audio</a><br>[3] <a href="dBFS - Wikipedia">https://en.wikipedia.org/wiki/DBFS</a><br>[4] 卢官明, 宗昉.数字音频原理及应用[M].机械工业出版社, 2012:31-33<br>[5] <a href="https://en.wikipedia.org/wiki/Headroom_(audio_signal_processing)#Digital_audio" target="_blank" rel="external">Headroom_(audio_signal_processing) - Wikipedia</a></p>
+<p>感谢知友<a href="https://www.zhihu.com/people/sspseansong/activities" target="_blank" rel="external">@宋少鹏</a> 的指点，然后我翻阅了一些资料。原来不是位深度的问题影响了超出0dBFS的信号的记录，而是浮点数或者非浮点数带来的影响。<sup>[6]</sup></p>
+<p>我做了一个实验，生成了一个大于0dBFS的信号，然后分别导出为16bit整形的wav和32bit浮点的wav，再使用软件打开查看波形，两者的差别便很明显了。<br><img src="/imgs/2017/09/03/16bit_hr.png" alt=""><br><small>使用16bit-int编码的wav文件</small><br><img src="/imgs/2017/09/03/32bit_hr.png" alt=""><br><small>使用32bit-float编码的wav文件</small></p>
+<p>浮点数将一个数字拆分成两个部分来保存，分别是 指数部分 和 分数部分。浮点数可以表达的数字范围特别大，但是是有一定条件的。如果需要精度很高，那么就没办法做到指数很大，反之，如果要表达很大的数字，那么精度就没办法太高。<sup>[7]</sup><br>基于浮点数这样的特性，使用浮点数来记录的信号，便可以达到一个近乎无穷的电平范围。<br>然而使用浮点数来记录信号也会带来一定的问题：<br>首先是编码解码。常见的DAC或者ADC芯片都是基于整数操作的，所以要录制或者播放浮点型的音频文件，还需要经过一个转换的过程，将其转换为整形。而其实这个过程就让浮点型的优势失去了意义。<br>但是由于浮点型音频文件这种允许超过0dBFS，并且不会引入量化噪声等优良的特性，使得其具有很高的使用价值。所以一般在音频工作站，音频处理软件等之间内部通信的时候，便会使用浮点型的编码形式，以保证音频的低失真。</p>
+<p>到这里，我自己提出的问题也便解决了。</p>
+<p>[1] <a href="https://www.sweetwater.com/forums/showthread.php?53451-Why-Bit-Depth-has-anything-to-do-with-level-dynamics" target="_blank" rel="external">Why Bit Depth has anything to do with level dynamics?? - Sweetwater Forums</a><br>[2] <a href="https://en.wikipedia.org/wiki/Dynamic_range#Audio" target="_blank" rel="external">Dynamic Range - Wikipedia</a><br>[3] <a href="https://en.wikipedia.org/wiki/DBFS" target="_blank" rel="external">dBFS - Wikipedia</a><br>[4] 卢官明, 宗昉.数字音频原理及应用[M].机械工业出版社, 2012:31-33<br>[5] <a href="https://en.wikipedia.org/wiki/Headroom_(audio_signal_processing)#Digital_audio" target="_blank" rel="external">Headroom_(audio_signal_processing) - Wikipedia</a><br>[6] <a href="https://hydrogenaud.io/index.php/topic,112361.0.html" target="_blank" rel="external">Question about PCM with 32-bit float</a><br>[7] <a href="https://en.wikipedia.org/wiki/Double-precision_floating-point_format" target="_blank" rel="external">Double-precision floating-point format - Wikipedia</a></p>
 
       
     </div>
-    <div class="majorDate"><span>编辑于 2017-09-03 12:31</span></div>
+    <div class="majorDate"><span>编辑于 2017-09-09 00:31</span></div>
     <footer class="article-footer">
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="majorTags"></a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/digital-audio/">数字音频</a></li></ul>
 
       
-        <a data-url="https://lmaj7.github.io/2017/0903headroom-bit-depth-and-dynamic-range.html" data-id="cj74988pz000hb0f6nf3of241" class="article-share-link">分享</a>
+        <a data-url="https://lmaj7.github.io/2017/0903headroom-bit-depth-and-dynamic-range.html" data-id="cj7c3q7g4000d74f695ovhl73" class="article-share-link">分享</a>
       
     </footer>
   </div>
