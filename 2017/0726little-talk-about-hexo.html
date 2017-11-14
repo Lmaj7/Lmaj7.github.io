@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="工科男的奇幻世界">
 <meta property="og:description" content="记个流水账吧。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-08-31T00:43:50.000Z">
+<meta property="og:updated_time" content="2017-11-14T10:00:50.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hexo杂谈">
 <meta name="twitter:description" content="记个流水账吧。">
@@ -108,6 +108,10 @@
 <li><a href="#tch-fix-bug-1">修复一个BUG</a></li>
 </ul>
 </li>
+<li>2017-11-14<ul>
+<li><a href="#mod-of-quote">对引用框的改造</a></li>
+</ul>
+</li>
 </ul>
 <hr>
 <h2 id="2017-07-28"><a href="#2017-07-28" class="headerlink" title="2017-07-28"></a>2017-07-28</h2><h3 id="tlk-icons">小图标</h3>
@@ -149,16 +153,28 @@
 
 <p>正在使用的是 <code>LandScape</code> 主题。<br>文章的数量终于多到开始要分页了，但是上一页和下一页的链接文字却是 <code>__(&#39;next&#39;)»</code> 。<br>定位到翻页栏的文件位置是 <code>\layout\_partial\archive.ejs</code> ，分页按钮在最底部。代码更改为<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;%- paginator(&#123;</div><div class="line">  <span class="attr">prev_text</span>: <span class="string">"&amp;laquo;"</span> + __(<span class="string">'prev'</span>),</div><div class="line">  <span class="attr">next_text</span>: __(<span class="string">'next'</span>) + <span class="string">"&amp;raquo;"</span></div><div class="line">&#125;) %&gt;</div></pre></td></tr></table></figure></p>
 <p>Landscape主题原来的代码为：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;%- paginator(&#123;</div><div class="line">  <span class="attr">prev_text</span>: <span class="string">"&amp;laquo;__('prev')"</span>,</div><div class="line">  <span class="attr">next_text</span>: <span class="string">"__('next')&amp;raquo;"</span></div><div class="line">&#125;) %&gt;</div></pre></td></tr></table></figure></p>
+<hr>
+<h2 id="2017-11-14"><a href="#2017-11-14" class="headerlink" title="2017-11-14"></a>2017-11-14</h2><h3 id="mod-of-quote">对hexo的引用样式的修改</h3>
+
+<p>最近写到文章使用到了引用块，然后发现 landscape 的引用样式可能对于外文来说是很好看的，但是对于中文，大大的，显示到显示器上的衬线字体就显得很丑了。于是决定来改一改 landscape 自带的引用块的样式。</p>
+<p>首先是思考怎么修改。同一篇文章里，我还使用到了代码块。于是就想，可以把引用块的风格跟代码块统一一下。改造就开始了。</p>
+<p>我发现 landscape 的引用块的代码其实并不复杂，就是一个 <code>&lt;blockquote&gt;</code> 里边包着一个 <code>&lt;p&gt;</code> 而已。颜色什么的奏不说了。这里发现了一个很神奇的用法，代码块用了一个 <code>-20px</code> 的 <code>margin</code> 来消除左右两边带来的边框。</p>
+<p>接下来最主要的点是我想加上两个大大的双引号。这里又让 <code>font-awesome</code> 出场了。</p>
+<p>这里的双引号，使用绝对定位的方式来游离在主体之外。代码如下：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&amp;:before</div><div class="line">  <span class="attribute">font-family</span>: font-icon</div><div class="line">  <span class="attribute">content</span>: <span class="string">"\f10d"</span></div><div class="line">  <span class="attribute">font-size</span>: <span class="number">1.3em</span></div><div class="line">  <span class="attribute">position</span>: absolute</div><div class="line">  <span class="attribute">top</span>: <span class="number">15px</span></div><div class="line">  <span class="attribute">left</span>: <span class="number">20px</span></div><div class="line">  <span class="attribute">color</span>: <span class="number">#eee</span></div></pre></td></tr></table></figure>
+<p>把双引号放上去之后，又发现一个问题，上方的双引号因为和文字的距离比较近，而下方的双引号和文字距离较远。这就造成了一个错觉，觉得下方的空间好像有点大。我也不知道怎么办，只好把右下角的双引号挪到左下角了hhh</p>
+<p>好吧我发现放在左下角更难看，还是放回去右下角吧</p>
+<p>把右下角的右边距和下边距做大一点，视觉会比较平衡。</p>
 
       
     </div>
-    <div class="majorDate"><span>编辑于 2017-08-31 08:43</span></div>
+    <div class="majorDate"><span>编辑于 2017-11-14 18:00</span></div>
     <footer class="article-footer">
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="majorTags"></a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/programming/">编程</a></li></ul>
 
       
-        <a data-url="https://lmaj7.github.io/2017/0726little-talk-about-hexo.html" data-id="cj8io46rl000378f6ycs0mtx1" class="article-share-link">分享</a>
+        <a data-url="https://lmaj7.github.io/2017/0726little-talk-about-hexo.html" data-id="cj9zhfghy00004wf6kggljcph" class="article-share-link">分享</a>
       
     </footer>
   </div>
@@ -203,7 +219,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/signal-processing/" style="font-size: 15px;">信号处理</a> <a href="/tags/sentiment/" style="font-size: 20px;">情感</a> <a href="/tags/digital-audio/" style="font-size: 15px;">数字音频</a> <a href="/tags/life/" style="font-size: 20px;">生活</a> <a href="/tags/programming/" style="font-size: 15px;">编程</a> <a href="/tags/caprice/" style="font-size: 15px;">随想</a>
+      <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/signal-processing/" style="font-size: 13.33px;">信号处理</a> <a href="/tags/sentiment/" style="font-size: 20px;">情感</a> <a href="/tags/digital-audio/" style="font-size: 13.33px;">数字音频</a> <a href="/tags/data-structures-and-algorithms/" style="font-size: 10px;">数据结构与算法</a> <a href="/tags/life/" style="font-size: 20px;">生活</a> <a href="/tags/programming/" style="font-size: 16.67px;">编程</a> <a href="/tags/caprice/" style="font-size: 13.33px;">随想</a>
     </div>
   </div>
 
@@ -212,7 +228,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a></li></ul>
     </div>
   </div>
 
@@ -223,6 +239,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2017/1114queue-story-of-cows.html">母牛的故事</a>
+          </li>
         
           <li>
             <a href="/2017/1004MSCoding-And-Ribbon_Mics.html">立体声就是左声道+右声道？不！M-S编码与铝带话筒</a>
@@ -238,10 +258,6 @@
         
           <li>
             <a href="/2017/0828an-aching-article.html">虐心</a>
-          </li>
-        
-          <li>
-            <a href="/2017/0826habits-forced-to-drop.html">被迫改掉的习惯</a>
           </li>
         
       </ul>
