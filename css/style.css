@@ -623,10 +623,29 @@ a.article-title:hover {
   padding: 10px 0;
 }
 .article-entry blockquote {
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 1.4em;
-  margin: 2em 20px;
-  text-align: center;
+  margin: 0 -20px;
+  background-color: #2d2d2d;
+  color: #ccc;
+  padding: 5px 60px 5px 40px;
+  position: relative;
+}
+.article-entry blockquote:before {
+  font-family: FontAwesome;
+  content: "\f10d";
+  font-size: 1.3em;
+  position: absolute;
+  top: 15px;
+  left: 20px;
+  color: #eee;
+}
+.article-entry blockquote:after {
+  font-family: FontAwesome;
+  content: "\f10e";
+  font-size: 1.3em;
+  position: absolute;
+  bottom: 20px;
+  right: 40px;
+  color: #eee;
 }
 .article-entry blockquote footer {
   font-size: 14px;
