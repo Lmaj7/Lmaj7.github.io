@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>模拟退火算法学习笔记 | 工科男的奇幻世界</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="最开始听说到退火这个概念，是在高中的时候很喜欢看的那些量子物理相关的文章里。 量子物理最初给我留下的印象是非常神秘深奥和捉摸不透的，但是其实只是因为不了解。而模拟退火算法也是这样。刚听到这个名字，会觉得，哇丢，贼高大上">
+<meta name="keywords" content="编程,数据结构与算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="模拟退火算法学习笔记">
+<meta property="og:url" content="https://lmaj7.github.io/2018/0122SA-note.html">
+<meta property="og:site_name" content="工科男的奇幻世界">
+<meta property="og:description" content="最开始听说到退火这个概念，是在高中的时候很喜欢看的那些量子物理相关的文章里。 量子物理最初给我留下的印象是非常神秘深奥和捉摸不透的，但是其实只是因为不了解。而模拟退火算法也是这样。刚听到这个名字，会觉得，哇丢，贼高大上">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://lmaj7.github.io/imgs/2018/01/22/sa_1d.gif">
+<meta property="og:image" content="https://lmaj7.github.io/imgs/2018/01/22/sa_2d.gif">
+<meta property="og:image" content="https://lmaj7.github.io/imgs/2018/01/22/sa_tsp.gif">
+<meta property="og:image" content="https://lmaj7.github.io/imgs/2018/01/22/sa_battery.gif">
+<meta property="og:image" content="https://lmaj7.github.io/imgs/2018/01/22/question_battery.jpg">
+<meta property="og:updated_time" content="2018-01-22T15:19:02.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="模拟退火算法学习笔记">
+<meta name="twitter:description" content="最开始听说到退火这个概念，是在高中的时候很喜欢看的那些量子物理相关的文章里。 量子物理最初给我留下的印象是非常神秘深奥和捉摸不透的，但是其实只是因为不了解。而模拟退火算法也是这样。刚听到这个名字，会觉得，哇丢，贼高大上">
+<meta name="twitter:image" content="https://lmaj7.github.io/imgs/2018/01/22/sa_1d.gif">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">工科男的奇幻世界</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">&nbsp;/&nbsp;主页&nbsp;<img src="/css/images/icons/home_32.png" class="majorNavIcons" /></a>
+        
+          <a class="main-nav-link" href="/archives">&nbsp;/&nbsp;归档&nbsp;<img src="/css/images/icons/archives_32.png" class="majorNavIcons" /></a>
+        
+          <a class="main-nav-link" href="https://github.com/Lmaj7">&nbsp;/&nbsp;GitHub&nbsp;<img src="/css/images/icons/github_32.png" class="majorNavIcons" /></a>
+        
+          <a class="main-nav-link" href="http://music.163.com/#/artist?id=12464223">&nbsp;/&nbsp;网易音乐人&nbsp;<img src="/css/images/icons/netease_32.png" class="majorNavIcons" /></a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <!-- <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://lmaj7.github.io"></form> -->
+        <!-- majors search -->
+        <form action="//cn.bing.com/search" method="get" accept-charset="UTF-8" class="search-form" id="majorSearchForm" onsubmit="majorSearchResp(this)"><input name="q" class="search-form-input" placeholder="搜索" id="majorSearchInput"><button type="submit" class="search-form-submit"></button></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-SA-note" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/0122SA-note.html" class="article-date">
+  <time datetime="2018-01-22T15:19:02.000Z" itemprop="datePublished">2018-01-22 23:19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      模拟退火算法学习笔记
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最开始听说到退火这个概念，是在高中的时候很喜欢看的那些量子物理相关的文章里。</p>
+<p>量子物理最初给我留下的印象是非常神秘深奥和捉摸不透的，但是其实只是因为不了解。而模拟退火算法也是这样。刚听到这个名字，会觉得，哇丢，贼高大上<a id="more"></a>。不过学习之后，会发现这是一个非常有趣，而且浅显易懂的东西。</p>
+<p>这篇文章，我主要用 4 个不同类型的例子，使用 MATLAB，来写下我自己学习模拟退火算法之后的理解。</p>
+<p>模拟退火算法主要用于难以准确求出具体的解的问题之中。通过多次迭代，它可以不断地接近最优解。</p>
+<p><strong> 只是接近最优解？ </strong></p>
+<p>是的！对于一些问题，如TSP问题，如果把所有可能的解都遍历一遍，需要的时间是随着城市的数量增加而呈爆炸性增长的，因此对于多个城市的TSP问题，老老实实去解，会花费特别多的时间。若是对于解的精度没有太高的要求，则可以损失一些精度来换取速度。</p>
+<p>举个简单的例子，比如我们要找到方程 y = x^2 的最小值，虽然对于我们来说一眼就可以看出来解是 x = 0 ，但是对于计算机呢？如果是更复杂的方程呢？</p>
+<p>模拟退火算法的核心思想是：首先随机选择一个解作为开始，接下来产生一个随机扰动，如果找到比上一个解更接近最优解的解，那么就直接接受这个解。而如果找到的解离得更远了，没关系，以一定的概率接受。</p>
+<p>这段文字可以说是很绕了，那奏拿上面的方程作为例子，一步一步拆解开，先看看会是什么样子叭！</p>
+<p>首先我们限定一个区间，比如 [-2,2] ，然后在这个区间里，随机选择一个点， x = 4 * (rand - 0.5)，以及它对应的函数的数值 s = f(x) ，然后以这个点作为起点。</p>
+<p>接下来产生一个随机扰动，扰动的大小可以自己设计一些参数来调节。 x_new = x + k * (rand - 0.5) ，并计算出该点对应的函数值 s_new = f(x_new) 。</p>
+<p>对两个数值求差值，就可以判断新的解是否更接近最优解。 dE = s_new - s</p>
+<p>如果dE小于0，则说明新的接更加接近我们想要的解，即接受该解。</p>
+<p>我们会想，那更接近的话，接受，不就行了呗？为什么还需要在离最优解更远的时候也一定的概率接受呢？</p>
+<p>如果函数不是 y = x^2 ，而是 y = x + 10 <em> sin(5 </em> x) + 7 <em> cos(4 </em> x) <sup>[1]</sup>呢，哈哈哈哈开个玩笑。意思就是如果遇到一个有多个极值（或者说局部最优解）的函数，那么如果不接受一个离最优解更远的解，如果不是因为一开始随机的点就落在了最优解所在的区间里，那么就永远也没办法得到最优解了。 以一定的概率去接受一个比较差劲的解的目的就是，让它有机会跳出局部最优解而奔向全局最优解。</p>
+<p>这个概率一般取 p=e^(-dE/kT)，其中dE为当前解与上一个解的差值，k为常数，T为当前温度。</p>
+<p>e的负指数次幂小于1，因此可以十分方便地直接将p和范围为(0, 1)的随机数做比较，若p大于随机数则接受该解。随着温度的降低，p的值也逐渐降低，于是接受更差的解的概率也就越小，退火过程就趋于稳定。</p>
+<p>模拟退火的基本思想就这么多了，接下来通过实例来理解这个过程8！</p>
+<p>首先是模拟退火的精髓，判断函数。</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="params">[y]</span> = <span class="title">judge</span><span class="params">(dE, t)</span></span></div><div class="line">  <span class="keyword">if</span>(dE &lt; <span class="number">0</span>)</div><div class="line">    y = <span class="number">1</span>;</div><div class="line">  <span class="keyword">else</span></div><div class="line">    d = <span class="built_in">exp</span>(-(dE / t));</div><div class="line">    <span class="keyword">if</span>(d &gt; <span class="built_in">rand</span>)</div><div class="line">      y = <span class="number">1</span>;</div><div class="line">    <span class="keyword">else</span></div><div class="line">      y = <span class="number">0</span>;</div><div class="line">    <span class="keyword">end</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<p>函数传入两个参数，dE与t，然后返回是否接受该解。</p>
+<p><strong> 1、使用模拟退火算法求解[0， 9]范围内函数的最大值。 </strong></p>
+<p>这里就拿上面说到的那个又是cos又是sin的函数吧哈哈哈哈哈</p>
+<p><img src="/imgs/2018/01/22/sa_1d.gif" alt=""></p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div></pre></td><td class="code"><pre><div class="line">clear;</div><div class="line"></div><div class="line"><span class="comment">%范围</span></div><div class="line">section_l = <span class="number">0</span>;</div><div class="line">section_h = <span class="number">9</span>;</div><div class="line"></div><div class="line"><span class="comment">%绘制函数图像</span></div><div class="line">draw_base();</div><div class="line"></div><div class="line"><span class="comment">%初始温度，停止温度与降温系数</span></div><div class="line">tmp = <span class="number">1e5</span>;</div><div class="line">tmp_min = <span class="number">1e-3</span>;</div><div class="line">alpha = <span class="number">0.98</span>;</div><div class="line"></div><div class="line"><span class="comment">%生成初始随机解</span></div><div class="line">x_old = (section_h - section_l) * <span class="built_in">rand</span>() + section_l;</div><div class="line">x_new = x_old;</div><div class="line">s_old = val(x_old);</div><div class="line">s_new = s_old;</div><div class="line"></div><div class="line">text_lt = text(<span class="number">0</span>, <span class="number">0</span>, <span class="string">'Init'</span>);</div><div class="line"></div><div class="line"><span class="comment">%计数器</span></div><div class="line">counter = <span class="number">0</span>;</div><div class="line"></div><div class="line"><span class="comment">%退火的主体部分，一个循环</span></div><div class="line"><span class="keyword">while</span>(tmp &gt; tmp_min)</div><div class="line">  <span class="comment">%随机扰动</span></div><div class="line">  delta = (<span class="built_in">rand</span>() - <span class="number">0.5</span>) * <span class="number">3</span>;</div><div class="line">  x_new = x_old + delta;</div><div class="line">  <span class="comment">%扰动的值小于一半的区间范围时，可以用这种办法防止新值超出区间范围</span></div><div class="line">  <span class="keyword">if</span>(x_new &lt; section_l || x_new &gt; section_h)</div><div class="line">    x_new = x_new - <span class="number">2</span> * delta;</div><div class="line">  <span class="keyword">end</span></div><div class="line"> </div><div class="line">  s_new = val(x_new);</div><div class="line"></div><div class="line">  <span class="comment">%求差值，这里是找最大值而非最小值，所以不是s_new - s_old</span></div><div class="line">  dE = s_old - s_new;</div><div class="line">        </div><div class="line">  <span class="comment">%判断</span></div><div class="line">  <span class="built_in">j</span> = judge(dE, tmp);</div><div class="line">  <span class="keyword">if</span>(<span class="built_in">j</span>)</div><div class="line">    s_old = s_new;</div><div class="line">    x_old = x_new;</div><div class="line">  <span class="keyword">end</span></div><div class="line">          </div><div class="line">  <span class="comment">%只有当dE &lt; 0的情况下才降温</span></div><div class="line">  <span class="keyword">if</span>(dE &lt; <span class="number">0</span>)</div><div class="line">    delete(text_lt);</div><div class="line">    hold on, scatter(x_old, s_old);</div><div class="line">    hold on, text_lt = text(<span class="number">0.3</span>, <span class="number">21</span>, [<span class="string">'tmp: '</span>, num2str(tmp)]);</div><div class="line">    pause(<span class="number">0.01</span>);</div><div class="line">    <span class="comment">%上面是绘图的代码，下面降温</span></div><div class="line">    tmp = tmp * alpha;</div><div class="line">  <span class="keyword">else</span></div><div class="line">    counter = counter + <span class="number">1</span>;</div><div class="line">  <span class="keyword">end</span></div><div class="line">            </div><div class="line">  <span class="comment">%当接受更差的解的概率太小时，若又长时间找不到更优的解，那么退出循环，结束算法</span></div><div class="line">  <span class="keyword">if</span>(counter &gt; <span class="number">10000</span>)</div><div class="line">    <span class="keyword">break</span>;</div><div class="line">  <span class="keyword">end</span></div><div class="line">    </div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="params">[y]</span> = <span class="title">val</span><span class="params">(x)</span></span></div><div class="line">    y = x + <span class="number">10</span> * <span class="built_in">sin</span>(<span class="number">5</span> * x) + <span class="number">7</span> * <span class="built_in">cos</span>(<span class="number">4</span> * x);</div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">draw_base</span><span class="params">()</span></span></div><div class="line">    X = <span class="number">0</span>: <span class="number">0.01</span>:<span class="number">9</span>;</div><div class="line">    M = val(X);</div><div class="line">    plot(X, M);</div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<p>整个程序可以大致分为几个部分：</p>
+<p>函数的值，val()函数，传入自变量，输出函数值。判断函数，输入dE与T，输出是否接受新解。最后是退火的主体部分，在一个while循环中，首先设定退出循环的条件，比如在本例中是退火达到了某个最低的温度，或者一定次数下都只能找到更劣质的解。</p>
+<p><strong> 2、使用模拟退火算法求解到点集直线距离之和最短的点 </strong></p>
+<p><img src="/imgs/2018/01/22/sa_2d.gif" alt=""></p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div></pre></td><td class="code"><pre><div class="line">clear;</div><div class="line"></div><div class="line"><span class="keyword">global</span> num_of_dots;</div><div class="line"><span class="keyword">global</span> dots_x;</div><div class="line"><span class="keyword">global</span> dots_y;</div><div class="line">num_of_dots = <span class="number">12</span>;</div><div class="line"></div><div class="line">dots_x = [<span class="number">0</span> <span class="number">1.5</span> <span class="number">1.5</span> <span class="number">-2</span> <span class="number">-4</span> <span class="number">-5</span> <span class="number">2</span>    <span class="number">4</span>    <span class="number">5</span> <span class="number">-2</span> <span class="number">-3</span> <span class="number">3</span> <span class="number">-1.5</span> <span class="number">-2.5</span> <span class="number">0.1</span>];</div><div class="line">dots_y = [<span class="number">0</span> <span class="number">10</span>  <span class="number">12</span>  <span class="number">11</span> <span class="number">-8</span> <span class="number">2</span>  <span class="number">-1.5</span> <span class="number">-2.5</span> <span class="number">1</span> <span class="number">-2</span>  <span class="number">8</span> <span class="number">6</span>    <span class="number">0</span>    <span class="number">0</span> <span class="number">0.2</span>];</div><div class="line"></div><div class="line">draw_dist(), hold on;</div><div class="line">scatter(dots_x, dots_y, <span class="string">'MarkerFaceColor'</span>,<span class="string">'blue'</span>);</div><div class="line"></div><div class="line"></div><div class="line">x_min = min(dots_x);</div><div class="line">y_min = min(dots_y);</div><div class="line">x_max = max(dots_x);</div><div class="line">y_max = max(dots_y);</div><div class="line">x_range = x_max - x_min;</div><div class="line">y_range = y_max - y_min;</div><div class="line"></div><div class="line">tmp = <span class="number">1000</span>;</div><div class="line">tmp_max = tmp;</div><div class="line">tmp_min = <span class="number">0.001</span>;</div><div class="line">alpha = <span class="number">0.98</span>;</div><div class="line"></div><div class="line">x_old = <span class="built_in">rand</span>() * x_range + x_min;</div><div class="line">y_old = <span class="built_in">rand</span>() * y_range + y_min;</div><div class="line">x_new = x_old;</div><div class="line">y_new = y_old;</div><div class="line">s_old = dist(x_old, y_old);</div><div class="line">s_new = s_old;</div><div class="line"></div><div class="line">txttt = text(<span class="number">0</span>, <span class="number">0</span>, <span class="string">'Init'</span>);</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">while</span>(tmp &gt; tmp_min)</div><div class="line"></div><div class="line">  <span class="comment">%因为是在二维平面里，所以产生两个维度的随机扰动</span></div><div class="line">  delta1 = (<span class="built_in">rand</span> - <span class="number">0.5</span>);</div><div class="line">  delta2 = (<span class="built_in">rand</span> - <span class="number">0.5</span>);</div><div class="line">  x_new = delta1 + x_old;</div><div class="line">  y_new = delta2 + y_old;</div><div class="line">    </div><div class="line">  <span class="keyword">if</span>(x_new &gt; x_max || x_new &lt; x_min)</div><div class="line">    x_new = x_new - <span class="number">2</span> * delta1;</div><div class="line">  <span class="keyword">end</span></div><div class="line">  <span class="keyword">if</span>(y_new &gt; y_max || y_new &lt; y_min)</div><div class="line">    y_new = y_new - <span class="number">2</span> * delta2;</div><div class="line">  <span class="keyword">end</span></div><div class="line">    </div><div class="line">  s_new = dist(x_new, y_new);</div><div class="line">    </div><div class="line">  dE = s_new - s_old;</div><div class="line">  <span class="built_in">j</span> = judge(dE, tmp);</div><div class="line">    </div><div class="line">  <span class="keyword">if</span>(<span class="built_in">j</span>)</div><div class="line">    s_old = s_new;</div><div class="line">    x_old = x_new;</div><div class="line">    y_old = y_new;</div><div class="line">  <span class="keyword">end</span></div><div class="line">    </div><div class="line">  delete(txttt);</div><div class="line">  txttt = text(<span class="number">-4</span>, <span class="number">6</span>, &#123;[<span class="string">'Dist: '</span>,num2str(s_old)];[<span class="string">'Tmp: '</span>, num2str(tmp)]&#125;);</div><div class="line">  hold on, scatter(x_old, y_old, <span class="string">'.'</span>), pause(<span class="number">0.01</span>);</div><div class="line">    </div><div class="line">  tmp = tmp * alpha;</div><div class="line"></div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line">text(x_old, y_old, [<span class="string">'Solve: '</span>, num2str(s_old)]);</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">%计算点到点集的距离</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="params">[d]</span> = <span class="title">dist</span><span class="params">(x, y)</span></span></div><div class="line">    <span class="keyword">global</span> num_of_dots;</div><div class="line">    <span class="keyword">global</span> dots_x;</div><div class="line">    <span class="keyword">global</span> dots_y;</div><div class="line">    </div><div class="line">    d = <span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span> ii = <span class="number">1</span>:num_of_dots</div><div class="line">        d = d + <span class="built_in">sqrt</span>((x - dots_x(ii))^<span class="number">2</span> + (y - dots_y(ii))^<span class="number">2</span>);</div><div class="line">    <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">draw_dist</span><span class="params">()</span></span></div><div class="line">    <span class="keyword">global</span> dots_x;</div><div class="line">    <span class="keyword">global</span> dots_y;</div><div class="line">    </div><div class="line">    x_min = <span class="built_in">floor</span>(min(dots_x));</div><div class="line">    y_min = <span class="built_in">floor</span>(min(dots_y));</div><div class="line">    x_max = <span class="built_in">ceil</span>(max(dots_x));</div><div class="line">    y_max = <span class="built_in">ceil</span>(max(dots_y));</div><div class="line">    </div><div class="line">    resol = <span class="number">10</span>;</div><div class="line">    </div><div class="line">    dx = x_min: <span class="number">1</span>/resol : x_max;</div><div class="line">    dy = y_min: <span class="number">1</span>/resol : y_max;</div><div class="line">    </div><div class="line">    [xx, yy] = <span class="built_in">meshgrid</span>(dx, dy);</div><div class="line">    zz = <span class="built_in">zeros</span>(<span class="built_in">length</span>(dy), <span class="built_in">length</span>(dx));</div><div class="line"></div><div class="line">    <span class="keyword">for</span> ii = <span class="number">1</span>:<span class="built_in">length</span>(dx)</div><div class="line">        <span class="keyword">for</span> jj = <span class="number">1</span>:<span class="built_in">length</span>(dy)</div><div class="line">            zz(jj, ii) = dist(dx(ii), dy(jj));</div><div class="line">        <span class="keyword">end</span></div><div class="line">    <span class="keyword">end</span></div><div class="line">    </div><div class="line">    contour(xx, yy, zz);</div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<p>这个问题其实使用爬山算法，梯度下降等也可以很方便地求解，因为它只有一个极值</p>
+<p><strong> 3、TSP问题 </strong> <sup>[2]</sup><br><img src="/imgs/2018/01/22/sa_tsp.gif" alt=""></p>
+<p>贼炫酷有没有！</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div></pre></td><td class="code"><pre><div class="line">clear;</div><div class="line"></div><div class="line">cities1=[<span class="number">0.9695</span>,<span class="number">0.6606</span>,<span class="number">0.5906</span>,<span class="number">0.2124</span>,<span class="number">0.0398</span>,<span class="number">0.1367</span>,<span class="number">0.9536</span>,<span class="number">0.6091</span>,<span class="number">0.8767</span>,<span class="number">0.8148</span>,<span class="number">0.3876</span>,<span class="number">0.7041</span>,<span class="number">0.0213</span>,<span class="number">0.3429</span>,<span class="number">0.7471</span>,<span class="number">0.4606</span>,<span class="number">0.7695</span>,<span class="number">0.5006</span>,<span class="number">0.3124</span>,<span class="number">0.0098</span>,<span class="number">0.3637</span>,<span class="number">0.5336</span>,<span class="number">0.2091</span>,<span class="number">0.4767</span>,<span class="number">0.4148</span>,<span class="number">0.5876</span>,<span class="number">0.6041</span>,<span class="number">0.3213</span>,<span class="number">0.6429</span>,<span class="number">0.7471</span>;</div><div class="line">         <span class="number">0.6740</span>,<span class="number">0.9500</span>,<span class="number">0.5029</span>,<span class="number">0.8274</span>,<span class="number">0.9697</span>,<span class="number">0.5979</span>,<span class="number">0.2184</span>,<span class="number">0.7148</span>,<span class="number">0.2395</span>,<span class="number">0.2867</span>,<span class="number">0.8200</span>,<span class="number">0.3296</span>,<span class="number">0.1649</span>,<span class="number">0.3025</span>,<span class="number">0.8192</span>,<span class="number">0.6500</span>,<span class="number">0.7420</span>,<span class="number">0.0229</span>,<span class="number">0.7274</span>,<span class="number">0.4697</span>,<span class="number">0.0979</span>,<span class="number">0.2684</span>,<span class="number">0.7948</span>,<span class="number">0.4395</span>,<span class="number">0.8867</span>,<span class="number">0.3200</span>,<span class="number">0.5296</span>,<span class="number">0.3649</span>,<span class="number">0.7025</span>,<span class="number">0.9192</span>];</div><div class="line"></div><div class="line">tmp = <span class="number">1e3</span>;</div><div class="line">tmp_min = <span class="number">1e-5</span>;</div><div class="line">alpha = <span class="number">0.99</span>;</div><div class="line">s_old = dist(cities1);</div><div class="line">cit_new = cities1;</div><div class="line">s_new = s_old;</div><div class="line"></div><div class="line">txttt = text(<span class="number">0</span>, <span class="number">0</span>, <span class="string">'Init'</span>);</div><div class="line"></div><div class="line">counter = <span class="number">0</span>;</div><div class="line"><span class="keyword">while</span>(tmp &gt; tmp_min)</div><div class="line">  </div><div class="line">  <span class="comment">%产生随机扰动，对于TSP问题，随机扰动一般为交换几座城市的顺序</span></div><div class="line">  cit_new = new_solve(cities1);</div><div class="line">  s_new = dist(cit_new);</div><div class="line">  dE = (s_new - s_old) * <span class="number">500</span>;</div><div class="line">  <span class="built_in">j</span> = judge(dE, tmp);</div><div class="line"></div><div class="line">  <span class="keyword">if</span>(<span class="built_in">j</span>)</div><div class="line">    cities1 = cit_new;</div><div class="line">    s_old = s_new;</div><div class="line">  <span class="keyword">end</span></div><div class="line">    </div><div class="line">  <span class="keyword">if</span>(dE &lt; <span class="number">0</span>)</div><div class="line">    counter = <span class="number">0</span>;</div><div class="line">    <span class="comment">%降温</span></div><div class="line">    tmp = tmp * alpha;</div><div class="line">    <span class="comment">%绘图</span></div><div class="line">    clf;</div><div class="line">    text(<span class="number">0.8</span>, <span class="number">0.9</span>, &#123;[<span class="string">'tmp: '</span>, num2str(tmp)];[<span class="string">'dist: '</span>, num2str(s_old)]&#125;);</div><div class="line">    hold on;</div><div class="line">    draw_route(cities1);</div><div class="line">    pause(<span class="number">0.01</span>);</div><div class="line">  <span class="keyword">else</span></div><div class="line">    counter =counter + <span class="number">1</span>;</div><div class="line">  <span class="keyword">end</span></div><div class="line"></div><div class="line">  <span class="keyword">if</span>(counter &gt; <span class="number">1e4</span>)</div><div class="line">    <span class="keyword">break</span>;</div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">draw_route</span><span class="params">(in)</span></span></div><div class="line">  plot(in(<span class="number">1</span>,:), in(<span class="number">2</span>,:),<span class="string">'-o'</span>);</div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="params">[d]</span> = <span class="title">dist</span><span class="params">(in)</span></span></div><div class="line">  num = <span class="built_in">size</span>(in, <span class="number">2</span>) - <span class="number">1</span>;</div><div class="line">  d = <span class="number">0</span>;</div><div class="line">  <span class="keyword">for</span> ii = <span class="number">1</span>: num</div><div class="line">    d = d + <span class="built_in">sqrt</span>(sum((in(:, ii+<span class="number">1</span>) - in(:, ii)).^<span class="number">2</span>));</div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="params">[cities2]</span> = <span class="title">new_solve</span><span class="params">(in)</span></span></div><div class="line">  cities2 = in;</div><div class="line">  num_of_cities = <span class="built_in">size</span>(cities2,<span class="number">2</span>);</div><div class="line">    </div><div class="line">  <span class="keyword">while</span> <span class="number">1</span></div><div class="line">    cit1 = <span class="built_in">ceil</span>(<span class="built_in">rand</span>() * num_of_cities);</div><div class="line">    cit2 = <span class="built_in">ceil</span>(<span class="built_in">rand</span>() * num_of_cities);</div><div class="line">    <span class="keyword">if</span>(cit1 ~= cit2)</div><div class="line">      <span class="keyword">break</span>;</div><div class="line">    <span class="keyword">end</span></div><div class="line">  <span class="keyword">end</span></div><div class="line">    </div><div class="line">  tmp = cities2(:, cit1);</div><div class="line">  cities2(:, cit1) = cities2(:, cit2);</div><div class="line">  cities2(:, cit2) = tmp;</div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<p><strong> 4、应用题 </strong></p>
+<p><img src="/imgs/2018/01/22/sa_battery.gif" alt=""></p>
+<p><img src="/imgs/2018/01/22/question_battery.jpg" alt=""></p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div></pre></td><td class="code"><pre><div class="line">clear;</div><div class="line">v_old = <span class="built_in">rand</span>();</div><div class="line">tao_old = <span class="built_in">rand</span>();</div><div class="line">v_new = v_old;</div><div class="line">tao_new = tao_old;</div><div class="line">s_old = vt(v_old, tao_old);</div><div class="line">s_new = s_old;</div><div class="line"></div><div class="line">tmp = <span class="number">1e5</span>;</div><div class="line">tmp_min = <span class="number">1e-3</span>;</div><div class="line">alpha = <span class="number">0.98</span>;</div><div class="line"></div><div class="line">draw_vt();</div><div class="line"></div><div class="line"></div><div class="line">txttt = text(<span class="number">0</span>, <span class="number">0</span>, <span class="string">'Init'</span>);</div><div class="line"><span class="keyword">while</span>(tmp &gt; tmp_min)</div><div class="line"></div><div class="line">  delta1 = (<span class="built_in">rand</span> - <span class="number">0.5</span>);</div><div class="line">  delta2 = (<span class="built_in">rand</span> - <span class="number">0.5</span>);</div><div class="line">  v_new = delta1 + v_old;</div><div class="line">  tao_new = delta2 + tao_old;</div><div class="line">    </div><div class="line">  <span class="keyword">if</span>(tao_new == <span class="number">0</span>)</div><div class="line">    tao_new = tao_new + delta2;</div><div class="line">  <span class="keyword">end</span></div><div class="line">    </div><div class="line">  s_new = vt(v_new, tao_new);</div><div class="line">    </div><div class="line">  dE = s_new - s_old;</div><div class="line">  <span class="built_in">j</span> = judge(dE, tmp);</div><div class="line">    </div><div class="line">  <span class="keyword">if</span>(<span class="built_in">j</span>)</div><div class="line">    s_old = s_new;</div><div class="line">    v_old = v_new;</div><div class="line">    tao_old = tao_new;</div><div class="line">  <span class="keyword">end</span></div><div class="line">    </div><div class="line">  delete(txttt);</div><div class="line">  hold on, scatter(v_old, tao_old, <span class="string">'.'</span>);</div><div class="line">  txttt = text(<span class="number">-20</span>, <span class="number">2.5</span>, &#123;[<span class="string">'diff: '</span>,num2str(s_old)];[<span class="string">'Tmp: '</span>, num2str(tmp)];[<span class="string">'Tao: '</span>, num2str(tao_old)];[<span class="string">'V0: '</span>, num2str(v_old)]&#125;,<span class="string">'Color'</span>, <span class="string">'white'</span>);</div><div class="line">  pause(<span class="number">0.01</span>);</div><div class="line">    </div><div class="line">  tmp = tmp * alpha;</div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">draw_vt</span><span class="params">()</span></span></div><div class="line">    V0 = <span class="built_in">linspace</span>(<span class="number">-30</span>, <span class="number">30</span>, <span class="number">50</span>);</div><div class="line">    Tao = <span class="built_in">linspace</span>(<span class="number">0.1</span>, <span class="number">5</span>, <span class="number">50</span>);</div><div class="line">    zz = <span class="built_in">zeros</span>(<span class="built_in">length</span>(V0));</div><div class="line">    </div><div class="line">    <span class="keyword">for</span> ii = <span class="number">1</span>:<span class="built_in">length</span>(V0)</div><div class="line">        <span class="keyword">for</span> jj = <span class="number">1</span>:<span class="built_in">length</span>(Tao)</div><div class="line">            zz(jj, ii) = <span class="built_in">abs</span>(<span class="number">6.1434</span> - vt(V0(ii), Tao(jj)));</div><div class="line">        <span class="keyword">end</span></div><div class="line">    <span class="keyword">end</span></div><div class="line">    </div><div class="line">    gca = pcolor(V0, Tao, zz);</div><div class="line">    set(gca, <span class="string">'LineStyle'</span>,<span class="string">'none'</span>);</div><div class="line">    shading interp;</div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="params">[y]</span> = <span class="title">vt</span><span class="params">(V0, Tao)</span></span></div><div class="line">    V = <span class="number">14</span>;</div><div class="line">    T = [<span class="number">0.3</span> <span class="number">0.5</span> <span class="number">1.0</span> <span class="number">2.0</span> <span class="number">4.0</span> <span class="number">7.0</span>];</div><div class="line">    res_origin = [<span class="number">5.6873</span> <span class="number">6.1434</span> <span class="number">7.1633</span> <span class="number">8.8626</span> <span class="number">11.0328</span> <span class="number">12.6962</span>];</div><div class="line">    </div><div class="line">    res = V - (V - V0) * <span class="built_in">exp</span>(-T/Tao);</div><div class="line">    </div><div class="line">    delta = res - res_origin;</div><div class="line">    </div><div class="line">    y = sum(delta.*delta);</div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<p>[1] <a href="https://www.zhihu.com/question/23293449/answer/120220974" target="_blank" rel="external">这个函数来自 如何通俗易懂地解释遗传算法？有什么例子？</a><br>[2] Aravind Seshadri.Simulated Annealing For Traveling Salesman Problem</p>
+
+      
+    </div>
+    <div class="majorDate"><span>编辑于 2018-01-22 23:19</span></div>
+    <footer class="article-footer">
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="majorTags"></a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/data-structures-and-algorithms/">数据结构与算法</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/programming/">编程</a></li></ul>
+
+      
+        <a data-url="https://lmaj7.github.io/2018/0122SA-note.html" data-id="cjcqd5skd000qzwf64p7dxkwf" class="article-share-link">分享</a>
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/0102trip-to-guangzhou.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">我还没反应过来，就已经喜欢上了这座城市</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+</section>
+        
+          <aside id="sidebar">
+  
+    <div class="major-widget-wrap">
+  <div class="major-widget">
+    <img src="/css/images/major.jpg" style="width: 100%" />
+      <div class="major-widget-inner">
+        <p><b>Major</b><br /><span>立志成为业余音乐人</span><br /><span><a href="//mycraft.cc">MineCraft我的手艺</a>创始人</span></p><p><b>教育经历</b><br /><span>深圳大学&nbsp;测控技术与仪器</span><br /><span>普宁二中</span></p><p><b>所在行业</b><br /><span>计算机软件</span></p><p><b>居住地</b><br /><span>深圳市、揭阳市</span></p>
+      </div>
+  </div>
+</div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/signal-processing/" style="font-size: 13.33px;">信号处理</a> <a href="/tags/sentiment/" style="font-size: 18.33px;">情感</a> <a href="/tags/digital-audio/" style="font-size: 13.33px;">数字音频</a> <a href="/tags/data-structures-and-algorithms/" style="font-size: 11.67px;">数据结构与算法</a> <a href="/tags/life/" style="font-size: 20px;">生活</a> <a href="/tags/programming/" style="font-size: 16.67px;">编程</a> <a href="/tags/network/" style="font-size: 10px;">网络</a> <a href="/tags/caprice/" style="font-size: 15px;">随想</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/0122SA-note.html">模拟退火算法学习笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2018/0102trip-to-guangzhou.html">我还没反应过来，就已经喜欢上了这座城市</a>
+          </li>
+        
+          <li>
+            <a href="/2017/1207simple-exp.html">越长大，我们越不知道怎么简简单单地活着</a>
+          </li>
+        
+          <li>
+            <a href="/2017/1119a-magic-exp-of-ipv6.html">一次神奇的使用IPv6的经历</a>
+          </li>
+        
+          <li>
+            <a href="/2017/1114queue-story-of-cows.html">数据结构：队列，母牛的故事</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info">
+      &copy; 2018 Major<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+    <div id="footer-rightside"><div id="footerAnalyse" ><script src="https://s13.cnzz.com/z_stat.php?id=1263054760&web_id=1263054760" language="JavaScript"></script></div></div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">/&nbsp;主页&nbsp;<img src="/css/images/icons/home_32.png" class="majorMobiNavIcons" /></a>
+  
+    <a href="/archives" class="mobile-nav-link">/&nbsp;归档&nbsp;<img src="/css/images/icons/archives_32.png" class="majorMobiNavIcons" /></a>
+  
+    <a href="https://github.com/Lmaj7" class="mobile-nav-link">/&nbsp;GitHub&nbsp;<img src="/css/images/icons/github_32.png" class="majorMobiNavIcons" /></a>
+  
+    <a href="http://music.163.com/#/artist?id=12464223" class="mobile-nav-link">/&nbsp;网易音乐人&nbsp;<img src="/css/images/icons/netease_32.png" class="majorMobiNavIcons" /></a>
+  
+</nav>
+    
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/qrcode.js"></script>
+<script src="/js/major.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
