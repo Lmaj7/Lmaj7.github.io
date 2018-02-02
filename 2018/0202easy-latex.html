@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>美赛LaTeX快速上手 | 工科男的奇幻世界</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="前言：因为美赛而接触了 LaTeX ，发现自己的很多很入门级的疑惑都在网络上找不到解答，">
+<meta name="keywords" content="工具">
+<meta property="og:type" content="article">
+<meta property="og:title" content="美赛LaTeX快速上手">
+<meta property="og:url" content="https://lmaj7.github.io/2018/0202easy-latex.html">
+<meta property="og:site_name" content="工科男的奇幻世界">
+<meta property="og:description" content="前言：因为美赛而接触了 LaTeX ，发现自己的很多很入门级的疑惑都在网络上找不到解答，">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://lmaj7.github.io/imgs/faces/hehehegay.jpg">
+<meta property="og:image" content="https://lmaj7.github.io/imgs/faces/idontknowwhattosay.jpg">
+<meta property="og:image" content="https://lmaj7.github.io/imgs/2018/02/02/1.png">
+<meta property="og:updated_time" content="2018-02-02T13:37:21.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="美赛LaTeX快速上手">
+<meta name="twitter:description" content="前言：因为美赛而接触了 LaTeX ，发现自己的很多很入门级的疑惑都在网络上找不到解答，">
+<meta name="twitter:image" content="https://lmaj7.github.io/imgs/faces/hehehegay.jpg">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">工科男的奇幻世界</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">&nbsp;/&nbsp;主页&nbsp;<img src="/css/images/icons/home_32.png" class="majorNavIcons" /></a>
+        
+          <a class="main-nav-link" href="/archives">&nbsp;/&nbsp;归档&nbsp;<img src="/css/images/icons/archives_32.png" class="majorNavIcons" /></a>
+        
+          <a class="main-nav-link" href="https://github.com/Lmaj7">&nbsp;/&nbsp;GitHub&nbsp;<img src="/css/images/icons/github_32.png" class="majorNavIcons" /></a>
+        
+          <a class="main-nav-link" href="http://music.163.com/#/artist?id=12464223">&nbsp;/&nbsp;网易音乐人&nbsp;<img src="/css/images/icons/netease_32.png" class="majorNavIcons" /></a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <!-- <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://lmaj7.github.io"></form> -->
+        <!-- majors search -->
+        <form action="//cn.bing.com/search" method="get" accept-charset="UTF-8" class="search-form" id="majorSearchForm" onsubmit="majorSearchResp(this)"><input name="q" class="search-form-input" placeholder="搜索" id="majorSearchInput"><button type="submit" class="search-form-submit"></button></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-easy-latex" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/0202easy-latex.html" class="article-date">
+  <time datetime="2018-02-02T13:37:21.000Z" itemprop="datePublished">2018-02-02 21:37</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      美赛LaTeX快速上手
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h2><p>因为美赛而接触了 LaTeX ，发现自己的很多很入门级的疑惑都在网络上找不到解答，<a id="more"></a>或者可能是因为我的问题实在是太简单了吧哈哈哈。</p>
+<p>所以这里就专门针对美赛写一篇 LaTeX 的入门，也当做是对自己学过的东西的一个巩固和总结。</p>
+<h2 id="一、-LaTeX-是什么"><a href="#一、-LaTeX-是什么" class="headerlink" title="一、 LaTeX 是什么"></a>一、 LaTeX 是什么</h2><p>LaTeX 是一款排版工具，但是不同于 Office Word , WPS, 等我们常见的工具。LaTeX 在编辑的过程中不是所见即所得的。</p>
+<p>什么？那看不见，我还要怎么编辑？</p>
+<p>编辑 LaTeX ，只需要任何一个可以编辑纯文本文件的工具就可以了。而编写完的 LaTeX ，需要经过编译（有时需要多次编译），才能生成最终的文档，现在一般为生成 <code>.pdf</code> 文档。这就需要我们有强大的脑补能力，在编写的过程中，不断地想象自己写出来的是什么玩意。</p>
+<p>对于文科生而言可能很难接受这个设定。我们队伍负责写论文的会计小姐姐就抓狂了很久哈哈哈（嘲笑她）。而理工科的大佬们应该会会心一笑，呵，代码。<br><img src="/imgs/faces/hehehegay.jpg" alt=""></p>
+<h2 id="二、为什么要用-LaTeX-？"><a href="#二、为什么要用-LaTeX-？" class="headerlink" title="二、为什么要用 LaTeX ？"></a>二、为什么要用 LaTeX ？</h2><p>其实没有硬性的要求。工具嘛，用着顺手才是最重要的！问题是，可能对于很多人来说， 就算是 Word 的一些基本功能都用不好，更别说要用来写论文了！而从头去学一遍 Word 又可能会有很多已经有所了解的知识，这时候会陷入一种“为了速度跳过呢，还是生怕错过一点点要点而仔细去看完基础教程”之类的困境，白白浪费了三百天的时间用于纠结。</p>
+<p>所以还不如直接上手 TeX 哈哈哈。对于一个新鲜玩意，总能有十二分精神去钻研嘛！<br>而在美赛中，最重要的是！LaTeX上有现成的模板可以套用！</p>
+<h2 id="三、为什么有辣么多-啥啥啥TeX-？"><a href="#三、为什么有辣么多-啥啥啥TeX-？" class="headerlink" title="三、为什么有辣么多 啥啥啥TeX ？"></a>三、为什么有辣么多 啥啥啥TeX ？</h2><p>好了，到了要来下载 LaTeX 的时候，我的队友懵逼了，接下来我也懵逼了。 MiKTeX, proTeXt, TeX Live<br><img src="/imgs/faces/idontknowwhattosay.jpg" alt=""></p>
+<p>我该下哪个呢？为什么没有直接来个 LaTeX ？</p>
+<p>TeX 现在说来，其实更倾向于是指一种语言，一种标记语言，就像 html ，我们并不是说有个 html 软件可以用来浏览 html 页面，而是有各种厂商开发的各种浏览器，按照 html 语言的标准，去解析 html 文档。<br>TeX 也是这样的！而 LaTeX 则是对 TeX 封装后的产物，使得语法更加简单，使用更加方便。</p>
+<p>上面提到的各种 TeX ，又是基于 LaTeX 再进行开发，整合一些包，模板等之后产生的产物。<sup>[1]</sup></p>
+<p>这里我们主要使用 MiKTeX ，因为它拥有一个强大的特性，一个包管理工具。</p>
+<h2 id="四、使用美赛模板"><a href="#四、使用美赛模板" class="headerlink" title="四、使用美赛模板"></a>四、使用美赛模板</h2><h3 id="1、安装模板包"><a href="#1、安装模板包" class="headerlink" title="1、安装模板包"></a>1、安装模板包</h3><p>安装完 MiKTeX 之后，找到 MiKTeX Package Manager ， 然后在 Name 栏中输入 mcmthesis ，安装。<br>这个包包可以帮助我们很方便地生成美赛的模板。</p>
+<h3 id="2、整体操作"><a href="#2、整体操作" class="headerlink" title="2、整体操作"></a>2、整体操作</h3><p>创建一个文件夹，然后在文件夹中创建一个 <code>.tex</code> 文件，复制这段代码，保存。<br><figure class="highlight tex"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="tag">\<span class="name">documentclass</span><span class="string">&#123;mcmthesis&#125;</span></span></div><div class="line"><span class="tag">\<span class="name">mcmsetup</span><span class="string">&#123;tcn = 11111, problem = D, titlepage = false&#125;</span></span></div><div class="line"><span class="tag">\<span class="name">title</span><span class="string">&#123;aaa&#125;</span></span></div><div class="line"><span class="tag">\<span class="name">author</span><span class="string">&#123;Major&#125;</span></span></div><div class="line"><span class="tag">\<span class="name">date</span><span class="string">&#123;\today&#125;</span></span></div><div class="line"></div><div class="line"><span class="tag">\<span class="name">begin</span><span class="string">&#123;document&#125;</span></span></div><div class="line"></div><div class="line"><span class="tag">\<span class="name">begin</span><span class="string">&#123;abstract&#125;</span></span></div><div class="line">aaaaaaaaaaaaaaaaaaaaaaaa</div><div class="line"><span class="tag">\<span class="name">end</span><span class="string">&#123;abstract&#125;</span></span></div><div class="line"></div><div class="line"><span class="tag">\<span class="name">maketitle</span></span></div><div class="line">bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb</div><div class="line"></div><div class="line"><span class="tag">\<span class="name">end</span><span class="string">&#123;document&#125;</span></span></div></pre></td></tr></table></figure></p>
+<p>接下来调出命令行（开始 → 运行 → cmd → 确定），使用 cd 命令将工作目录切换到 <code>.tex</code> 文件所在的文件夹中，输入<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">xelatex 文件名.tex</div></pre></td></tr></table></figure></p>
+<p>enter<br>顺利的话就能看到同一个目录下，多出了一个 pdf 文档，打开看看吧！</p>
+<p><img src="/imgs/2018/02/02/1.png" alt=""></p>
+<p>编译的过程中有可能会提示需要安装其他的该模板所依赖的包，一路 Install 即可。下载和安装包包的过程中，似乎没有任何提示，耐心等待吧！<sup>[2]</sup></p>
+<h3 id="3、LaTeX基本语法"><a href="#3、LaTeX基本语法" class="headerlink" title="3、LaTeX基本语法"></a>3、LaTeX基本语法</h3><p>一个完整的 LaTeX 文档，首先需要声明文档的类型，也就是上面代码中开头的 documentclass 。其语法为<br><figure class="highlight tex"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">\<span class="name">documentclass</span><span class="string">[option]</span><span class="string">&#123;class&#125;</span></span></div></pre></td></tr></table></figure></p>
+<p>class 指定了文档的类型，一般设置为 article 。但是在这里我们使用了 mcmthesis 模板，则将 class 设置为 mcmthesis 。 而 option 为一些设置参数，如字体大小等，可以空缺。</p>
+<p>上面的以反斜杠开头的一行，成为命令，它定义了文档的样式等，但是其本身不会被渲染出来。</p>
+<p>要被渲染出来的文字，则包含在成为 environment 的区域里面，它们通常被 <code>\begin</code> 和 <code>\end</code> 命令包含起来</p>
+<p>在该模板中，使用<br><figure class="highlight tex"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="tag">\<span class="name">begin</span><span class="string">&#123;abstract&#125;</span></span></div><div class="line"><span class="tag">\<span class="name">end</span><span class="string">&#123;abstract&#125;</span></span></div></pre></td></tr></table></figure></p>
+<p>可以设置摘要的内容</p>
+<p>而在 <code>\documentclass</code> 和 <code>\begin</code> 之间的部分，则用于进行一些配置或者包的引用。<br>使用命令<br><figure class="highlight tex"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">\<span class="name">usepackage</span><span class="string">&#123;&#125;</span></span></div></pre></td></tr></table></figure></p>
+<p>来使用某个包<br>而在 mcmthesis 中，可以使用<br><figure class="highlight tex"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">\<span class="name">mcmsetting</span><span class="string">&#123;&#125;</span></span></div></pre></td></tr></table></figure></p>
+<p>来对模板进行一些必要的配置，如控制编号，选题等</p>
+<p>剩余的最正经的部分，怎么去编辑，怎么去插入图片，生成公式之类的，我就不讲啦嘻嘻嘻，因为那些内容，网上一搜都是一把一把的！<sup>[3]</sup></p>
+<h2 id="五、编译、多次编译与编辑软件"><a href="#五、编译、多次编译与编辑软件" class="headerlink" title="五、编译、多次编译与编辑软件"></a>五、编译、多次编译与编辑软件</h2><h3 id="1、编译"><a href="#1、编译" class="headerlink" title="1、编译"></a>1、编译</h3><p>LaTeX 需要经过编译才能生成我们最终看到的文档。编译的方法，则是调用 LaTeX 的编译器啦！<br>打开命令行，我们可以发现有许多命令都可以用于 LaTeX 文档的编译。就如上文例子中，我使用了 <code>xelatex xxx.tex</code> 命令来编译 LaTeX 文档。<br>如果把命令换成 <code>pdftex xxx.tex</code> ，也照样能够完成编译。甚至还有 xetex, pdflatex, texify, 等等等等。它们又有什么区别呢？</p>
+<p>上面说到 TeX 有不同的发行版本，MiKTeX, TeX Live 等，而刚刚提到的这些则是不同的“编译器”。</p>
+<p>TeX 是这一切的基础，但是它的语法生涩难懂。于是有人在它的基础上增加了一层封装，让它使用起来更为简便，就是 LaTeX 了<br>最开始 TeX 生成的文档是 <code>.dvi</code> 格式的文档，但是在今天 .dvi 在民用领域已经比较不常见了，取而代之的是 <code>.pdf</code> ，于是 pdftex 应运而生。而使用 LaTeX 引擎去渲染，则对应的有了 pdflatex 。<br>后来又因为原声的 LaTeX 只支持 ASCII 编码的文本，对于其他编码格式的文本无能为力。所以 xetex 和 xelatex 又诞生了。xetex 和 xelatex 默认输出也是 pdf 文档。<sup>[4]</sup><sup>[5]</sup></p>
+<p>如果编译的时候总是要像上面我举的例子那样，打开命令行，切换工作目录，再手打一遍命令，那简直就太痛苦了！</p>
+<p>所以我们可以直接新建一个批处理文档！<br>如果你不知道怎么做，可以以这样的简单方法入手：在 <code>.tex</code> 文件所在的目录下，新建一个文本文档，接着将这个文本文档的后缀名由 <code>.txt</code> 改为 <code>.bat</code><br>右击这个 <code>.bat</code> 文件，选择“编辑”，接着在里面输入命令，如 <code>xelatex ssssbbbb.tex</code> ，保存并关闭。往后只要直接运行这个批处理文件，就可以完成编译工作啦！<br>当然，还可以按照自己的需求，继续扩展这条指令。</p>
+<h3 id="2、多次编译"><a href="#2、多次编译" class="headerlink" title="2、多次编译"></a>2、多次编译</h3><p>在 LaTeX 文档使用了 <code>\label</code> , <code>\cite</code> 等命令，或在需要生成目录、进行交叉引用等情况下，我们就需要对一个 LaTeX 文档进行多次编译，不然可能会导致输出的文档出现错乱。<sup>[6]</sup></p>
+<h3 id="3、编辑软件"><a href="#3、编辑软件" class="headerlink" title="3、编辑软件"></a>3、编辑软件</h3><p>个人使用的是微软推出的 VS Code，可以从微软的官网免费地下载到这个软件。<br>下载之后，安装扩展插件 LaTeX Workshop。<br>安装完毕后，在上方菜单栏选择 文件 → 首选项 → 设置，将以下代码粘贴到设置里<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">"latex-workshop.latex.toolchain": [</div><div class="line">    &#123;</div><div class="line">        "command": "xelatex",</div><div class="line">        "args": [</div><div class="line">            "%DOC%.tex"</div><div class="line">        ]</div><div class="line">    &#125;</div><div class="line">]</div></pre></td></tr></table></figure></p>
+<p>往后便可以使用组合键 <code>Ctrl + Alt + b</code> 来直接运行命令 <code>xelatex %DOC%.tex</code><br>也就是编译当前文档。<br>以上代码也可以根据自己的需求去修改，十分方便！</p>
+<p>[1] <a href="http://ju.outofmemory.cn/entry/107516" target="_blank" rel="external">一份其实很短的LaTeX入门文档</a><br>[2] <a href="http://ju.outofmemory.cn/entry/236161" target="_blank" rel="external">如何使用美赛模板 mcmthesis</a><br>[3] <a href="https://zh.wikibooks.org/zh-cn/LaTeX" target="_blank" rel="external">LaTeX - 维基教科书</a><br>[4] <a href="http://blog.sina.com.cn/s/blog_aff412f10102v2kd.html" target="_blank" rel="external">各种TeX</a><br>[5] <a href="https://docs.miktex.org/manual/" target="_blank" rel="external">MiKTeX Manual</a><br>[6] <a href="http://vim-latex.sourceforge.net/documentation/latex-suite/compiling-multiple.html" target="_blank" rel="external">Compiling multiple times</a></p>
+
+      
+    </div>
+    <div class="majorDate"><span>编辑于 2018-02-02 21:37</span></div>
+    <footer class="article-footer">
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="majorTags"></a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tools/">工具</a></li></ul>
+
+      
+        <a data-url="https://lmaj7.github.io/2018/0202easy-latex.html" data-id="cjd5zki7j001jckf6b7kturva" class="article-share-link">分享</a>
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/0122SA-note.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">模拟退火算法学习笔记</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+</section>
+        
+          <aside id="sidebar">
+  
+    <div class="major-widget-wrap">
+  <div class="major-widget">
+    <img src="/css/images/major.jpg" style="width: 100%" />
+      <div class="major-widget-inner">
+        <p><b>Major</b><br /><span>立志成为业余音乐人</span><br /><span><a href="//mycraft.cc">MineCraft我的手艺</a>创始人</span></p><p><b>教育经历</b><br /><span>深圳大学&nbsp;测控技术与仪器</span><br /><span>普宁二中</span></p><p><b>所在行业</b><br /><span>计算机软件</span></p><p><b>居住地</b><br /><span>深圳市、揭阳市</span></p>
+      </div>
+  </div>
+</div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/signal-processing/" style="font-size: 13.33px;">信号处理</a> <a href="/tags/tools/" style="font-size: 10px;">工具</a> <a href="/tags/sentiment/" style="font-size: 18.33px;">情感</a> <a href="/tags/digital-audio/" style="font-size: 13.33px;">数字音频</a> <a href="/tags/data-structures-and-algorithms/" style="font-size: 11.67px;">数据结构与算法</a> <a href="/tags/life/" style="font-size: 20px;">生活</a> <a href="/tags/programming/" style="font-size: 16.67px;">编程</a> <a href="/tags/network/" style="font-size: 10px;">网络</a> <a href="/tags/caprice/" style="font-size: 15px;">随想</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/0202easy-latex.html">美赛LaTeX快速上手</a>
+          </li>
+        
+          <li>
+            <a href="/2018/0122SA-note.html">模拟退火算法学习笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2018/0102trip-to-guangzhou.html">我还没反应过来，就已经喜欢上了这座城市</a>
+          </li>
+        
+          <li>
+            <a href="/2017/1207simple-exp.html">越长大，我们越不知道怎么简简单单地活着</a>
+          </li>
+        
+          <li>
+            <a href="/2017/1119a-magic-exp-of-ipv6.html">一次神奇的使用IPv6的经历</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info">
+      &copy; 2018 Major<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+    <div id="footer-rightside"><div id="footerAnalyse" ><script src="https://s13.cnzz.com/z_stat.php?id=1263054760&web_id=1263054760" language="JavaScript"></script></div></div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">/&nbsp;主页&nbsp;<img src="/css/images/icons/home_32.png" class="majorMobiNavIcons" /></a>
+  
+    <a href="/archives" class="mobile-nav-link">/&nbsp;归档&nbsp;<img src="/css/images/icons/archives_32.png" class="majorMobiNavIcons" /></a>
+  
+    <a href="https://github.com/Lmaj7" class="mobile-nav-link">/&nbsp;GitHub&nbsp;<img src="/css/images/icons/github_32.png" class="majorMobiNavIcons" /></a>
+  
+    <a href="http://music.163.com/#/artist?id=12464223" class="mobile-nav-link">/&nbsp;网易音乐人&nbsp;<img src="/css/images/icons/netease_32.png" class="majorMobiNavIcons" /></a>
+  
+</nav>
+    
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/qrcode.js"></script>
+<script src="/js/major.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
