@@ -92,11 +92,9 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>接触到抖动这个概念，其实是在学习数字音频处理的过程中<sup>[1]</sup>。但是却是一张非常直观的图片惊艳到了。<a id="more"></a></p>
-<p><strong> 请大家先仔细观看这两张图片。这两张图片中并不存在灰色，都仅由黑色和白色组成。 </strong><br><img src="/imgs/2017/09/11/dither.jpg" alt=""><br>（版权问题，便用一张自己小时候游泳的照片做了类似的抖动处理）</p>
-<p>首先，我用一个极端的例子来引出文章。</p>
-<h2 id="由二值化问题引出文章"><a href="#由二值化问题引出文章" class="headerlink" title="由二值化问题引出文章"></a>由二值化问题引出文章</h2><p>如果把一张照片二值化（也就是说把图片转换成黑白两色，没有灰色），要怎么尽可能地把图片上的细节保留下来？</p>
-<p>在二值化的过程中，其实可以调整的参数非常少。调整二值化的阈值，可以保留下不同亮度的地方的细节，但是都是顾此失彼，其实都只是治标不治本。<br><br><br></p>
-<p>不过谁吃饱撑了，要把一张图片转换成黑白的，同时又要保留它的细节？</p>
+<p><strong> 请大家先仔细观看这两张图片。这两张图片中并不存在灰色，都仅由黑色和白色组成。 </strong><br><img src="/imgs/2017/09/11/dither.jpg" alt=""> </p>
+<h2 id="二值化问题"><a href="#二值化问题" class="headerlink" title="二值化问题"></a>二值化问题</h2><p>如果把一张照片二值化（也就是说把图片转换成黑白两色，没有灰色），要怎么尽可能地把图片上的细节保留下来？</p>
+<p>在很久很久以前啊，有一种东西叫做传真机。传真机通过电话线，在发送端扫描图像，然后在接收端用热敏纸把图像打印出来。但是对热敏纸来说，难以控制它的颜色的深浅。所以类似于上图的抖动处理，在当时的传真年代，得到了广泛的应用。</p>
 <p>现实世界中的信号都是连续的，我们称之为模拟信号。但是计算机只认1和0。要用计算机来记录信号，就必须把连续的信号离散化，转换为由1和0表达的离散的信号，这样的信号我们称为数字信号。<br><br><br></p>
 <p>这里二值化的图片，只是一个比较极端，有助于理解的例子。它可以对应到一个只有1个Bit的AD转换器上，把每个像素点采样为0或者1。平时我们接触到的图片多是8Bit的，能表达的色彩丰富得多。</p>
 <p>但是无论如何，终究会有个上限。</p>
@@ -129,7 +127,8 @@
 <p>但是由于技术上的限制，一些显示器可能并不能实际达到8bit的现实效果。这时候他们就可以通过6bit的实际可以现实的颜色数量，配合抖动算法，来达到8bit的显示效果。<br><br><br></p>
 <p>最近的10bit显示器也是比较热门的一个话题。有一些显示器厂商，也使用抖动算法，来增加显示器的表现力。<br><br><br></p>
 <p>在音频处理上。音频处理的过程中，在AD转换时会引入量化误差，就是上边举的音频的例子。这样的误差也可以通过抖动来减小。或者说，抖动处理之后，一定位深度的音频文件可以记录的动态范围便增大了。<br><br><br></p>
-<h2 id="抖动处理的使用"><a href="#抖动处理的使用" class="headerlink" title="抖动处理的使用"></a>抖动处理的使用</h2><p>对原始的信号进行抖动处理才是真正有用的。试想一下文章开头图片的例子。如果在左边黑白色的图片上加入噪点，并不能还原图片的细节，反而还会使得图片的质量进一步下降。</p>
+<h2 id="抖动处理的使用"><a href="#抖动处理的使用" class="headerlink" title="抖动处理的使用"></a>抖动处理的使用</h2><p>抖动处理应该添加在原始信号之后，降低位深度之前。</p>
+<p>试想一下文章开头图片的例子。如果在左边黑白色的图片上加入噪点，并不能还原图片的细节，反而还会使得图片的质量进一步下降。</p>
 <p>同样的，音频处理上的抖动，一般会由母带师来完成。作为听众，我们不会用到这样的操作。<br><br><br></p>
 <p>抖动使用的噪声上还可以做文章。针对不同的情况，可以选用不同类型的噪声，来达到一个更好的效果。这些内容，就留待以后在另外的文章里再做讲解了。<br><br><br><br><br></p>
 <p>[1] Bob Katz. Mastering Audio, The Art and the Science [M]. 人民邮电出版社, 2017:32-41<br>[2] <a href="https://en.wikipedia.org/wiki/Dither" target="_blank" rel="external">Dither - Wikipedia</a><br>[3] <a href="https://en.wikipedia.org/wiki/Color_depth" target="_blank" rel="external">Color Depth - Wikipedia</a> </p>
@@ -142,7 +141,7 @@
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="majorTags"></a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/signal-processing/">信号处理</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/digital-audio/">数字音频</a></li></ul>
 
       
-        <a data-url="https://lmaj7.github.io/2017/0911dithering.html" data-id="cjd5zki77001gckf6a0c79t12" class="article-share-link">分享</a>
+        <a data-url="https://lmaj7.github.io/2017/0911dithering.html" data-id="cjg09ml88001yosf61ykwtx5o" class="article-share-link">分享</a>
       
     </footer>
   </div>
@@ -187,7 +186,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/signal-processing/" style="font-size: 13.33px;">信号处理</a> <a href="/tags/tools/" style="font-size: 10px;">工具</a> <a href="/tags/sentiment/" style="font-size: 18.33px;">情感</a> <a href="/tags/digital-audio/" style="font-size: 13.33px;">数字音频</a> <a href="/tags/data-structures-and-algorithms/" style="font-size: 11.67px;">数据结构与算法</a> <a href="/tags/life/" style="font-size: 20px;">生活</a> <a href="/tags/programming/" style="font-size: 16.67px;">编程</a> <a href="/tags/network/" style="font-size: 10px;">网络</a> <a href="/tags/caprice/" style="font-size: 15px;">随想</a>
+      <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/signal-processing/" style="font-size: 14px;">信号处理</a> <a href="/tags/tools/" style="font-size: 10px;">工具</a> <a href="/tags/sentiment/" style="font-size: 18px;">情感</a> <a href="/tags/digital-audio/" style="font-size: 14px;">数字音频</a> <a href="/tags/data-structures-and-algorithms/" style="font-size: 12px;">数据结构与算法</a> <a href="/tags/life/" style="font-size: 20px;">生活</a> <a href="/tags/programming/" style="font-size: 16px;">编程</a> <a href="/tags/network/" style="font-size: 10px;">网络</a> <a href="/tags/caprice/" style="font-size: 14px;">随想</a>
     </div>
   </div>
 
@@ -196,7 +195,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a></li></ul>
     </div>
   </div>
 
@@ -207,6 +206,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2018/0414asymmetrical-waveform-n-ap-filter.html">不对称波形和全通滤波器</a>
+          </li>
         
           <li>
             <a href="/2018/0202easy-latex.html">美赛LaTeX快速上手</a>
@@ -222,10 +225,6 @@
         
           <li>
             <a href="/2017/1207simple-exp.html">越长大，我们越不知道怎么简简单单地活着</a>
-          </li>
-        
-          <li>
-            <a href="/2017/1119a-magic-exp-of-ipv6.html">一次神奇的使用IPv6的经历</a>
           </li>
         
       </ul>
